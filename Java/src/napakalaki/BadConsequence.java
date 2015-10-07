@@ -51,4 +51,9 @@ public class BadConsequence {
     public boolean getDeath () {
         return this.death;
     }
+    
+    @Override
+    public String toString() {
+        return "Mal rollo = " + this.text + " Niveles = " + Integer.toString(this.levels) + " Muerte = " + Boolean.toString(this.death);
+    }
 }
