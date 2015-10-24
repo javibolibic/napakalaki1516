@@ -20,35 +20,50 @@ public class BadConsequence {
     private ArrayList<TreasureKind> specificHiddenTreasures = new ArrayList();
     private ArrayList<TreasureKind> specificVisibleTreasures = new ArrayList();
     
-    public BadConsequence (String text, int levels, int nVisible, int nHidden) {
-        
+    public BadConsequence(String text, int levels, int nVisible, int nHidden) {
+        this.text=text;
+        this.levels=levels;
+        this.nVisibleTreasures=nVisible;
+        this.nHiddenTreasures=nHidden;
     }
     
-    public BadConsequence (String text, boolean death) {
-        
+    public BadConsequence(String text, boolean death) {
+        this.text=text;
+        this.death=death;
     }
     
     public BadConsequence(String text, int levels, ArrayList<TreasureKind> tVisible, ArrayList<TreasureKind> tHidden) {
-    
+        this.text=text;
+        this.levels=levels;
+        this.specificVisibleTreasures=tVisible;
+        this.specificHiddenTreasures=tHidden;
     }
     
-    public String getText () {
+    public String getText() {
         return this.text;
     }
     
-    public int getLevels () {
+    public int getLevels() {
         return this.levels;
     }
     
-    public int getNVisibleTreasures () {
+    public int getNVisibleTreasures() {
         return this.nVisibleTreasures;
     }
     
-    public int getNHiddenTreasures () {
+    public int getNHiddenTreasures() {
         return this.nHiddenTreasures;
     }
     
-    public boolean getDeath () {
+    public ArrayList<TreasureKind> getSpecificVisibleTreasures() {
+        return this.specificVisibleTreasures;
+    }
+    
+    public ArrayList<TreasureKind> getSpecificHiddenTreasures() {
+        return this.specificHiddenTreasures;
+    }
+    
+    public boolean getDeath() {
         return this.death;
     }
     
