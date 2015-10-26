@@ -27,6 +27,6 @@ public class Prize {
     
     @Override
     public String toString() {
-        return "Tesoros = " + Integer.toString(this.treasures) + " Niveles = " + Integer.toString(this.level);
+        return "Tesoros ganados: " + Integer.toString(this.treasures) + "\n Niveles ganados: " + Integer.toString(this.level);
     }
 }

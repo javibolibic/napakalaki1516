@@ -18,6 +18,7 @@ public class PruebaNapakalaki {
      * @param args the command line arguments
      */
     
+    //Devuelve los monstruos cuyo nivel de combate es superior a 10
     public ArrayList<Monster> lvlExceeding10(ArrayList<Monster> monstruos){
         ArrayList<Monster> monsters = new ArrayList();
         for(Monster monstruo : monstruos){
@@ -27,7 +28,8 @@ public class PruebaNapakalaki {
         return monsters;
     }
     
-    public ArrayList<Monster> lossLevel(ArrayList<Monster> monstruos, BadConsequence bc){ //Devuelve los monstruos cuyo mal rollo implique sólo pérdida de niveles.
+    //Devuelve los monstruos cuyo mal rollo implique sólo pérdida de niveles.
+    public ArrayList<Monster> lossLevel(ArrayList<Monster> monstruos, BadConsequence bc){
         ArrayList<Monster> monsters = new ArrayList();
         for(Monster monstruo : monstruos){
             if(bc.getLevels()!=0) //Ahora mismo sólo comprueba que se pierden niveles, pero no comprueba otros parámetros. ¿Es correcto?
@@ -36,7 +38,8 @@ public class PruebaNapakalaki {
         return monsters;
     }
     
-    public ArrayList<Monster> prizeIsUpper1(ArrayList<Monster> monstruos, Prize prize){ //Devuelve los monstruos cuyo buen rollo indica ganancia de niveles superior a 1
+    //Devuelve los monstruos cuyo buen rollo indica ganancia de niveles superior a 1
+    public ArrayList<Monster> prizeIsUpper1(ArrayList<Monster> monstruos, Prize prize){
         ArrayList<Monster> monsters = new ArrayList();
         for(Monster monstruo : monstruos){
             if(prize.getLevel()>1)
@@ -45,7 +48,8 @@ public class PruebaNapakalaki {
         return monsters;
     }
     
-    public ArrayList<Monster> anyBC(ArrayList<Monster> monstruos, BadConsequence bc){ //Devuelve los monstruos cuyo mal rollo supone la pérdida de algún tipo determinado de tesoros
+    //Devuelve los monstruos cuyo mal rollo supone la pérdida de algún tipo determinado de tesoros
+    public ArrayList<Monster> anyBC(ArrayList<Monster> monstruos, BadConsequence bc){ 
         ArrayList<Monster> monsters = new ArrayList();
         for(Monster monstruo : monstruos){
             if(bc.getSpecificHiddenTreasures()!=null || bc.getSpecificVisibleTreasures()!=null)
@@ -105,7 +109,7 @@ public class PruebaNapakalaki {
         monstruos.add(new Monster("La que redacta en las tinieblas", 2, badConsequence, prize));
         
         //Monstruo 10: Los hondos
-        badConsequence = new BadConsequence("Estos monstruos resultan bastante superficiales y te aburren mortalmente. Estas muerto.", true);
+        badConsequence = new BadConsequence("Estos monstruos resultan bastante superficiales y te aburren mortalmente. Estás muerto.", true);
         prize = new Prize(2, 1);
         monstruos.add(new Monster("Los hondos", 8, badConsequence, prize));
         

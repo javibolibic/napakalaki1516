@@ -29,6 +29,6 @@ public class Monster {
     
     @Override
     public String toString() {
-        return "Nombre = " + this.name + " Nivel de combate = " + Integer.toString(this.combatLevel);
+        return "Nombre = " + this.name + "\nNivel de combate = " + Integer.toString(this.combatLevel);
     }
 }

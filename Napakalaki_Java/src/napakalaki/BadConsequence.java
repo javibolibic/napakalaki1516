@@ -13,9 +13,7 @@ import java.util.ArrayList;
  */
 public class BadConsequence {
     private String text;
-    private int levels;
-    private int nVisibleTreasures;
-    private int nHiddenTreasures;
+    private int levels, nVisibleTreasures, nHiddenTreasures;
     private boolean death;
     private ArrayList<TreasureKind> specificHiddenTreasures = new ArrayList();
     private ArrayList<TreasureKind> specificVisibleTreasures = new ArrayList();
@@ -69,6 +67,6 @@ public class BadConsequence {
     
     @Override
     public String toString() {
-        return "Mal rollo = " + this.text + " Niveles = " + Integer.toString(this.levels) + " Muerte = " + Boolean.toString(this.death);
+        return "Mal rollo: " + this.text + "\nNiveles: " + Integer.toString(this.levels) + "\nMuerte: " + Boolean.toString(this.death);
     }
 }
