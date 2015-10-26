@@ -1,40 +1,39 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+********************************************************************
+** Creado por Javier Bolívar Valverde <javibolivar@correo.ugr.es> **
+** Programación y Diseño Orientado a Objetos                      **
+** Grado en Ingeniería Informática                                **
+********************************************************************
+*/
 package napakalaki;
 
 import java.util.ArrayList;
 
-/**
- *
- * @author jnb
- */
 public class BadConsequence {
     private String text;
     private int levels, nVisibleTreasures, nHiddenTreasures;
     private boolean death;
+    
     private ArrayList<TreasureKind> specificHiddenTreasures = new ArrayList();
     private ArrayList<TreasureKind> specificVisibleTreasures = new ArrayList();
     
     public BadConsequence(String text, int levels, int nVisible, int nHidden) {
-        this.text=text;
-        this.levels=levels;
-        this.nVisibleTreasures=nVisible;
-        this.nHiddenTreasures=nHidden;
+        this.text = text;
+        this.levels = levels;
+        this.nVisibleTreasures = nVisible;
+        this.nHiddenTreasures = nHidden;
     }
     
     public BadConsequence(String text, boolean death) {
-        this.text=text;
-        this.death=death;
+        this.text = text;
+        this.death = death;
     }
     
     public BadConsequence(String text, int levels, ArrayList<TreasureKind> tVisible, ArrayList<TreasureKind> tHidden) {
-        this.text=text;
-        this.levels=levels;
-        this.specificVisibleTreasures=tVisible;
-        this.specificHiddenTreasures=tHidden;
+        this.text = text;
+        this.levels = levels;
+        this.specificVisibleTreasures = tVisible;
+        this.specificHiddenTreasures = tHidden;
     }
     
     public String getText() {

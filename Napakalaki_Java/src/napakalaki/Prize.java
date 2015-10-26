@@ -1,20 +1,19 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+********************************************************************
+** Creado por Javier Bolívar Valverde <javibolivar@correo.ugr.es> **
+** Programación y Diseño Orientado a Objetos                      **
+** Grado en Ingeniería Informática                                **
+********************************************************************
+*/
 package napakalaki;
 
-/**
- *
- * @author jnb
- */
 public class Prize {
     private int treasures;
     private int level;
     
     public Prize(int treasures, int level){
-        
+        this.treasures = treasures;
+        this.level = level;
     }
     
     public int getTreasures() {
@@ -27,6 +26,6 @@ public class Prize {
     
     @Override
     public String toString() {
-        return "Tesoros ganados: " + Integer.toString(this.treasures) + "\n Niveles ganados: " + Integer.toString(this.level);
+        return "Tesoros ganados: " + Integer.toString(this.treasures) + "\nNiveles ganados: " + Integer.toString(this.level);
     }
 }

@@ -1,22 +1,16 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+********************************************************************
+** Creado por Javier Bolívar Valverde <javibolivar@correo.ugr.es> **
+** Programación y Diseño Orientado a Objetos                      **
+** Grado en Ingeniería Informática                                **
+********************************************************************
  */
 package napakalaki;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 
-/**
- *
- * @author jnb
- */
 public class PruebaNapakalaki {
-
-    /**
-     * @param args the command line arguments
-     */
     
     //Devuelve los monstruos cuyo nivel de combate es superior a 10
     public ArrayList<Monster> lvlExceeding10(ArrayList<Monster> monstruos){
@@ -157,7 +151,6 @@ public class PruebaNapakalaki {
         badConsequence = new BadConsequence("Te faltan manos para tanta cabeza. Pierdes 3 niveles y tus tesoros visibles de las manos.", 3, new ArrayList(Arrays.asList(TreasureKind.ONEHAND, TreasureKind.ONEHAND, TreasureKind.BOTHHANDS)), null);
         prize = new Prize(1, 1);
         monstruos.add(new Monster("Bicéfalo", 20, badConsequence, prize));
-        
     }
     
 }
