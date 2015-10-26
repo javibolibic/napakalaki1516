@@ -1,7 +1,12 @@
 # encoding: utf-8
-# To change this license header, choose License Headers in Project Properties.
-# To change this template file, choose Tools | Templates
-# and open the template in the editor.
+
+=begin
+********************************************************************
+** Creado por Javier Bolívar Valverde <javibolivar@correo.ugr.es> **
+** Programación y Diseño Orientado a Objetos                      **
+** Grado en Ingeniería Informática                                **
+********************************************************************
+=end
 
 require_relative 'prize'
 require_relative 'bad_consequence'
