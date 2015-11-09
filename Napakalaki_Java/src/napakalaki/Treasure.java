@@ -13,45 +13,28 @@
 */
 package napakalaki;
 
-public class Monster {
+public class Treasure {
     //Atributos
     private String name;
-    private int combatLevel;
-    
-    private BadConsequence badConsequence;
-    private Prize prize;
+    private int bonus;
+    private TreasureKind type;
     
     //Métodos
-    public Monster(String n, int l, BadConsequence b, Prize p) {
-        this.name = n;
-        this.combatLevel = l;
-        this.badConsequence = b;
-        this.prize = p;
+    public Treasure(String n, int bonus, TreasureKind t) {
+        this.name= n;
+        this.bonus= bonus;
+        this.type= t;
     }
     
-    
-    public String getName () {
+    public String getName() {
         return this.name;
     }
     
-    public int getCombatLevel () {
-        return this.combatLevel;
+    public int getBonus() {
+        return this.bonus;
     }
     
-    public BadConsequence getBadConsequence() {
-        return this.badConsequence;
-    }
-    
-    public int getLevelsGained() {
-        return this.prize.getLevel();
-    }
-    
-    public int getTreasuresGained() {
-        return this.prize.getTreasures();
-    }
-    
-    @Override
-    public String toString() {
-        return "Nombre = " + this.name + "\nNivel de combate = " + Integer.toString(this.combatLevel);
+    public TreasureKind getType() {
+        return this.type;
     }
 }

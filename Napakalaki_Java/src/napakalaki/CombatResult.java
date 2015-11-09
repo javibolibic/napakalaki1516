@@ -13,11 +13,8 @@
 */
 package napakalaki;
 
-public enum TreasureKind {
-    //Valores
-    ARMOR,
-    ONEHAND,
-    BOTHHANDS,
-    HELMET,
-    SHOES,
+public enum CombatResult {
+    WINGAME,
+    WIN,
+    LOSE,
 }

@@ -1,10 +1,16 @@
 /*
 ********************************************************************
+**       _   _                   _         _       _    _         **
+**      | \ | | __ _ _ __   __ _| | ____ _| | __ _| | _(_)        **
+**      |  \| |/ _` | '_ \ / _` | |/ / _` | |/ _` | |/ / |        **
+**      | |\  | (_| | |_) | (_| |   < (_| | | (_| |   <| |        **
+**      |_| \_|\__,_| .__/ \__,_|_|\_\__,_|_|\__,_|_|\_\_|        **
+**                  |_|                                           **
 ** Creado por Javier Bolívar Valverde <javibolivar@correo.ugr.es> **
 ** Programación y Diseño Orientado a Objetos                      **
 ** Grado en Ingeniería Informática                                **
 ********************************************************************
- */
+*/
 package napakalaki;
 
 import java.util.ArrayList;
@@ -56,6 +62,7 @@ public class PruebaNapakalaki {
         ArrayList<Monster> monstruos = new ArrayList();
         Prize prize; //Parámetros: tesoros, niveles
         BadConsequence badConsequence; //Parámetros: texto, niveles, visible, oculto
+
         
         //Monstruo 1: 3 Byakhees de bonanza
         badConsequence = new BadConsequence("Pierdes tu armadura visible y otra oculta", 0, new ArrayList(Arrays.asList(TreasureKind.ARMOR)), new ArrayList(Arrays.asList(TreasureKind.ARMOR)));

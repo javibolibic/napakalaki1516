@@ -13,11 +13,18 @@
 */
 package napakalaki;
 
-public enum TreasureKind {
-    //Valores
-    ARMOR,
-    ONEHAND,
-    BOTHHANDS,
-    HELMET,
-    SHOES,
+public class Dice {
+    private static final Dice instance = new Dice();
+    
+    private Dice() {
+        
+    }
+    
+    public static Dice getInstance() {
+        return instance;
+    }
+    
+    public int nextNumber() {
+        
+    }
 }
