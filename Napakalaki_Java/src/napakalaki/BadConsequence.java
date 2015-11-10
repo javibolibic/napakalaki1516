@@ -8,7 +8,7 @@
 **                  |_|                                           **
 ** Creado por Javier Bolívar Valverde <javibolivar@correo.ugr.es> **
 ** Programación y Diseño Orientado a Objetos                      **
-** Grado en Ingeniería Informática                                **
+** Grado en Ingeniería Informática (Universidad de Granada)       **
 ********************************************************************
 */
 package napakalaki;
@@ -79,8 +79,14 @@ public class BadConsequence {
         return "Mal rollo: " + this.text + "\nNiveles: " + Integer.toString(this.levels) + "\nMuerte: " + Boolean.toString(this.death);
     }
     
+    //Devuelve true cuando el mal rollo que tiene que cumplir el jugador está vacío, eso
+    //significa que el conjunto de atributos del mal rollo indican que no hay mal rollo que
+    //cumplir.
     public boolean isEmpty() {
-        
+        boolean empty = false;
+        if (specificHiddenTreasures.isEmpty() && specificVisibleTreasures.isEmpty() && nHiddenTreasures == 0 && nVisibleTreasures == 0)
+            empty = true;
+        return empty;
     }
     
     public void substractVisibleTreasure(Treasure t) {
@@ -92,6 +98,6 @@ public class BadConsequence {
     }
     
     public BadConsequence adjustToFitTreasureList(ArrayList<Treasure> v, ArrayList<Treasure> h) {
-        
+        return null;
     }
 }

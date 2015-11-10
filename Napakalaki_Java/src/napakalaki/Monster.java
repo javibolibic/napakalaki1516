@@ -8,7 +8,7 @@
 **                  |_|                                           **
 ** Creado por Javier Bolívar Valverde <javibolivar@correo.ugr.es> **
 ** Programación y Diseño Orientado a Objetos                      **
-** Grado en Ingeniería Informática                                **
+** Grado en Ingeniería Informática (Universidad de Granada)       **
 ********************************************************************
 */
 package napakalaki;
@@ -42,10 +42,12 @@ public class Monster {
         return this.badConsequence;
     }
     
+    //Devuelve el número de niveles ganados proporcionados por su buen rollo.
     public int getLevelsGained() {
         return this.prize.getLevel();
     }
     
+    //Devuelve el número de tesoros ganados proporcionados por su buen rollo.
     public int getTreasuresGained() {
         return this.prize.getTreasures();
     }

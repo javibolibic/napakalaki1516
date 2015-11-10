@@ -8,15 +8,17 @@
 **                  |_|                                           **
 ** Creado por Javier Bolívar Valverde <javibolivar@correo.ugr.es> **
 ** Programación y Diseño Orientado a Objetos                      **
-** Grado en Ingeniería Informática                                **
+** Grado en Ingeniería Informática (Universidad de Granada)       **
 ********************************************************************
 */
 package napakalaki;
 
+import java.util.ArrayList;
+
 
 public class Napakalaki {
     //Atributos
-    private static final Napakalaki instance = new Napakalaki();
+    private static final Napakalaki instance = null;
     private Monster currentMonster;
     private CardDealer dealer;
     private ArrayList<Player> players;
@@ -36,11 +38,11 @@ public class Napakalaki {
     }
     
     private Player nextPlayer() {
-        
+        return null;
     }
     
     private boolean nextTurnAllowed() {
-        
+        return false;
     }
     
     private void setEnemies(){
@@ -48,7 +50,7 @@ public class Napakalaki {
     }
     
     public CombatResult developCombat() {
-        
+        return null;
     }
     
     public void discardVisibleTreasures(ArrayList<Treasure> treasures) {
@@ -68,18 +70,18 @@ public class Napakalaki {
     }
     
     public Player getCurrentPlayer() {
-        
+        return null;
     }
     
     public Monster getCurrentMonster() {
-        
+        return null;
     }
     
     public boolean nextTurn() {
-        
+        return false;
     }
     
     public boolean endOfGame(CombatResult result) {
-        
+        return false;
     }
 }

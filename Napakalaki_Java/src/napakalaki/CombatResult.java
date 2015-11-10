@@ -8,7 +8,7 @@
 **                  |_|                                           **
 ** Creado por Javier Bolívar Valverde <javibolivar@correo.ugr.es> **
 ** Programación y Diseño Orientado a Objetos                      **
-** Grado en Ingeniería Informática                                **
+** Grado en Ingeniería Informática (Universidad de Granada)       ***
 ********************************************************************
 */
 package napakalaki;

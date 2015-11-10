@@ -8,7 +8,7 @@
 **                  |_|                                           **
 ** Creado por Javier Bolívar Valverde <javibolivar@correo.ugr.es> **
 ** Programación y Diseño Orientado a Objetos                      **
-** Grado en Ingeniería Informática                                **
+** Grado en Ingeniería Informática (Universidad de Granada)       **
 ********************************************************************
 */
 package napakalaki;
@@ -26,14 +26,17 @@ public class Treasure {
         this.type= t;
     }
     
+    //Consultor name
     public String getName() {
         return this.name;
     }
     
+    //Consultor bonus
     public int getBonus() {
         return this.bonus;
     }
     
+    //Consultor type
     public TreasureKind getType() {
         return this.type;
     }
