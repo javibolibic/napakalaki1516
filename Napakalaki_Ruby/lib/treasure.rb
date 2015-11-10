@@ -14,10 +14,14 @@
 ********************************************************************
 =end
 
-module TreasureKind
-  ARMOR = :armor
-  ONEHAND = :onehand
-  BOTHHANDS = :bothhands
-  HELMET = :helmet
-  SHOES = :shoes
+require_relative 'treasure_kind'
+
+class Treasure
+  def initialize(n, bonus, t)
+    @name = n
+    @bonus = bonus
+    @type = t
+  end
+  
+  attr_reader :name, :bonus, :type
 end

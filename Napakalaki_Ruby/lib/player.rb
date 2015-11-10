@@ -14,28 +14,64 @@
 ********************************************************************
 =end
 
+require_relative 'treasure'
 require_relative 'bad_consequence'
-require_relative 'prize'
 
-class Monster
-  def initialize(n, l, b, p)
-    @name = n
-    @combatLevel = l
-    @badConsequence = b
-    @prize = p
+class Player
+  
+  @@MAXLEVEL = 10
+  
+  def initialize(name)
+    @name = name
+    @level = 1
+    @dead = true
+    @canISteal = true
+    @hiddenTreasures = Array.new
+    @visibleTreasures = Array.new
+    @pendingBadConsequence = nil
+    @enemy = nil
   end
   
-  attr_reader :name, :combatLevel, :badConsequence
+  attr_reader :name, :level, :dead, :canISteal, :hiddenTreasures, :visibleTreasures
   
-  def get_levels_gained
-    return @prize.levels
+  private
+  def bring_to_life
+    
   end
   
-  def get_treasures_gained
-    return @prize.treasures
+  def get_combat_level
+    
   end
   
-  def to_s
-    "Nombre: #{@name} \n Nivel de combate: #{@combatLevel}"
+  def increment_levels(l)
+    
+  end
+  
+  def decrement_levels(l)
+    
+  end
+  
+  def set_pending_bad_consequence(b)
+    
+  end
+  
+  def apply_prize(m)
+    
+  end
+  
+  def apply_bad_consequence
+    
+  end
+  
+  def can_make_treasure_visible(t)
+    
+  end
+  
+  def how_many_visible_treasures(tKind)
+    
+  end
+  
+  def die_if_no_treasures
+    
   end
 end

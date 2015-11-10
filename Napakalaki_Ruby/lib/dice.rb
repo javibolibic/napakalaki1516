@@ -14,10 +14,12 @@
 ********************************************************************
 =end
 
-module TreasureKind
-  ARMOR = :armor
-  ONEHAND = :onehand
-  BOTHHANDS = :bothhands
-  HELMET = :helmet
-  SHOES = :shoes
+require 'singleton'
+
+class Dice
+  include Singleton
+  
+  def next_number()
+    
+  end
 end

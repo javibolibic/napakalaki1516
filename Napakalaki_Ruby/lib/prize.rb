@@ -2,19 +2,25 @@
 
 =begin
 ********************************************************************
+**       _   _                   _         _       _    _         **
+**      | \ | | __ _ _ __   __ _| | ____ _| | __ _| | _(_)        **
+**      |  \| |/ _` | '_ \ / _` | |/ / _` | |/ _` | |/ / |        **
+**      | |\  | (_| | |_) | (_| |   < (_| | | (_| |   <| |        **
+**      |_| \_|\__,_| .__/ \__,_|_|\_\__,_|_|\__,_|_|\_\_|        **
+**                  |_|                                           **
 ** Creado por Javier Bolívar Valverde <javibolivar@correo.ugr.es> **
 ** Programación y Diseño Orientado a Objetos                      **
-** Grado en Ingeniería Informática                                **
+** Grado en Ingeniería Informática (Universidad de Granada)       **
 ********************************************************************
 =end
 
 class Prize
-  def initialize(treasures, level)
-    @treasures = treasures
-    @level = level
+  def initialize(t, l)
+    @treasures = t
+    @levels = l
   end
   
-  attr_reader :treasures, :level
+  attr_reader :treasures, :levels
   
   def to_s
     "Tesoros ganados: #{@treasures} \n Niveles ganados: #{@levels}"
