@@ -29,8 +29,13 @@ class BadConsequence
     @death = death
   end
   
-  def isEmpty
-    
+  #Devuelve true cuando el mal rollo que tiene que cumplir el jugador está vacío, eso
+  #significa que el conjunto de atributos del mal rollo indican que no hay mal rollo que
+  #cumplir
+  def is_empty
+    empty = false
+    empty = true if (@specificHiddenTreasures.empty? && @specificVisibleTreasures.empty? && @nHiddenTreasures == 0 && @nVisibleTreasures == 0)
+    return empty
   end
   
   attr_reader :levels, :nVisibleTreasures, :nHiddenTreasures, :specificVisibleTreasures, :specificHiddenTreasures

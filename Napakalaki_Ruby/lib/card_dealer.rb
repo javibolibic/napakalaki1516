@@ -24,20 +24,153 @@ class CardDealer
   attr_accessor :unusedMonsters, :usedMonsters, :unusedTreasures, :usedTreasures
   
   private
+  #Inicializa el mazo de cartas de Tesoros (unusedTreasures) con todas las cartas de
+  #tesoros proporcionadas en el documento de cartas de tesoros.
   def init_treasure_card_deck
-    
+    @unusedTreasures << Treasure.new("¡Sí mi amo!", 4, TreasureKind::HELMET)
+    @unusedTreasures << Treasure.new("Botas de investigación", 3, TreasureKind::SHOES)
+    @unusedTreasures << Treasure.new("Capucha de Cthulhu", 3, TreasureKind::HELMET)
+    @unusedTreasures << Treasure.new("A prueba de balas", 2, TreasureKind::ARMOR)
+    @unusedTreasures << Treasure.new("Botas de lluvia ácida", 1, TreasureKind::BOTHHANDS)
+    @unusedTreasures << Treasure.new("Casco minero", 2, TreasureKind::HELMET)
+    @unusedTreasures << Treasure.new("Ametralladora Thompson", 4, TreasureKind::BOTHHANDS)
+    @unusedTreasures << Treasure.new("Camiseta de la UGR", 1, TreasureKind::ARMOR)
+    @unusedTreasures << Treasure.new("Clavo de rail ferroviario", 3, TreasureKind::ONEHAND)
+    @unusedTreasures << Treasure.new("Cuchillo de sushi arcano", 2, TreasureKind::ONEHAND)
+    @unusedTreasures << Treasure.new("Fez alópodo", 3, TreasureKind::HELMET)
+    @unusedTreasures << Treasure.new("Hacha prehistórica", 2, TreasureKin::ONEHAND)
+    @unusedTreasures << Treasure.new("El aparato del Pr. Tesla", 4, TreasureKind::ARMOR)
+    @unusedTreasures << Treasure.new("Gaita", 4, TreasureKind::BOTHHANDS)
+    @unusedTreasures << Treasure.new("Insecticida", 2, TreasureKind::ONEHAND)
+    @unusedTreasures << Treasure.new("Escopeta de 3 cañones", 4, TreasureKind::BOTHHANDS)
+    @unusedTreasures << Treasure.new("Garabato místico", 2, TreasureKind::ONEHAND)
+    @unusedTreasures << Treasure.new("La rebeca metálica", 2, TreasureKind::ARMOR)
+    @unusedTreasures << Treasure.new("Lanzallamas", 4, TreasureKind::BOTHHANDS)
+    @unusedTreasures << Treasure.new("Necrocomicón", 1, TreasureKind::ONEHAND)
+    @unusedTreasures << Treasure.new("Necronomicón", 5, TreasureKind::BOTHHANDS)
+    @unusedTreasures << Treasure.new("Linterna a 2 manos", 3, TreasureKind::BOTHHANDS)
+    @unusedTreasures << Treasure.new("Necrognomicón", 2, TreasureKind::ONEHAND)
+    @unusedTreasures << Treasure.new("Necrotelecom", 2, TreasureKind::HELMET)
+    @unusedTreasures << Treasure.new("Mazo de los antiguos", 3, TreasureKind::ONEHAND)
+    @unusedTreasures << Treasure.new("Necroplayboycón", 3, TreasureKind::ONEHAND)
+    @unusedTreasures << Treasure.new("Porra prenatural", 2, TreasureKind::ONEHAND)
+    @unusedTreasures << Treasure.new("Shogulador", 1, TreasureKind::BOTHHANDS)
+    @unusedTreasures << Treasure.new("Varita de atizamiento", 3, TreasureKind::ONEHAND)
+    @unusedTreasures << Treasure.new("Tentáculo de pega", 2, TreasureKind::HELMET)
+    @unusedTreasures << Treasure.new("Zapato deja-amigos", 1, TreasureKind::SHOES)
   end
   
+  #Inicializa el mazo de cartas de monstruos (unusedMonsters), con todas las cartas
+  #de monstruos proporcionadas en el documento de cartas de monstruos.
   def init_monster_card_deck
+    monsters = Array.new
+
+    # Monstruo 1: 3 Byakhees de bonanza
+    prize = Prize.new(2, 1)
+    bad_consequence = BadConsequence.newLevelSpecificTreasures('Pierdes tu armadura visible y otra oculta.', 0, [TreasureKind::ARMOR], [TreasureKind::ARMOR])
+    monsters << Monster.new('2 Byakhees de bonanza', 8, prize, badConsequence)
+
+    # Monstruo 2: Chibithulhu
+    prize = Prize.new(1, 1)
+    bad_consequence = BadConsequence.newLevelSpecificTreasures('Embobados con el lindo primigenio te descargas de tu casco visible.', 0, [TreasureKind::HELMET], nil)
+    monsters << Monster.new('Chibithulhu', 2, prize, badConsequence)
+
+    # Monstruo 3: El sopor de Dunwich
+    prize = Prize.new(1, 1)
+    bad_consequence = BadConsequence.newLevelSpecificTreasures('El primordial bostezo contagioso. Pierdes el calzado visible.', 0, [TreasureKind::SHOES], nil)
+    monsters << Monster.new('El sopor de Dunwich', 2, prize, badConsequence)
+
+    # Monstruo 4: Ángeles de la noche ibicenca
+    prize = Prize.new(4, 1)
+    bad_consequence = BadConsequence.newLevelSpecificTreasures('Te atrapan para llevarte de fiesta y te dejan caer en mitad del vuelo. Descarta 1 mano visible y 1 mano oculta.', 0, [TreasureKind::ONEHAND], [TreasureKind::ONEHAND])
+    monsters << Monster.new('Ángeles de la noche ibicenca', 14, prize, badConsequence)
+
+    # Monstruo 5: El gorrón en el umbral
+    prize = Prize.new(3, 1)
+    bad_consequence = BadConsequence.newLevelSpecificTreasures('Pierdes todos tus tesoros visibles.', 0, [TreasureKind::ONEHAND, TreasureKind::BOTHHANDS, TreasureKind::ARMOR, TreasureKind::HELMET, TreasureKind::SHOES], nil)
+    monsters << Monster.new('El gorrón en el umbral', 10, prize, badConsequence)
+
+    # Monstruo 6: H.P. Munchcraft
+    prize = Prize.new(2, 1)
+    bad_consequence = BadConsequence.newLevelSpecificTreasures('Pierdes la armadura visible.', 0, [TreasureKind::ARMOR], nil)
+    monsters << Monster.new('H.P. Munchcraft', 6, prize, badConsequence)
+
+    # Monstruo 7: Bichgooth
+    prize = Prize.new(1, 1)
+    bad_consequence = BadConsequence.newLevelSpecificTreasures('Sientes bichos bajo la ropa. Descarga la armadura visible.', 0, [TreasureKind::ARMOR], nil)
+    monsters << Monster.new('Bichgooth', 2, prize, badConsequence)
+
+    # Monstruo 8: El rey de rosa
+    price = Prize.new(4, 2)
+    bad_consequence = BadConsequence.newLevelNumberOfTreasures('Pierdes 5 niveles y 3 tesoros visibles.', 5, 3, 0)
+    monsters << Monster.new('El rey de rosa', 13, prize, badConsequence)
+
+    # Monstruo 9: La que redacta en las tinieblas.
+    price = Prize.new(1, 1)
+    bad_consequence = BadConsequence.newLevelNumberOfTreasures('Toses los pulmones y pierdes 2 niveles.', 2, 0, 0)
+    monsters << Monster.new('La que redacta en las tinieblas', 2, prize, badConsequence)
+
+    # Monstruo 10: Los hondos
+    prize = Prize.new(2, 1)
+    bad_consequence = BadConsequence.newDeath('Estos monstruos resultan bastante superficiales y te aburren mortalmente. Estás muerto.')
+    monsters << Monster.new('Los hondos', 8, prize, badConsequence)
+
+    # Monstruo 11: Semillas Cthulhu
+    price = Prize.new(2, 1)
+    bad_consequence = BadConsequence.newLevelNumberOfTreasures('Pierdes 2 niveles y 2 tesoros ocultos.', 2, 0, 2)
+    monsters << Monster.new('Semillas Cthulhu', 4, prize, badConsequence)
+
+    # Monstruo 12: Dameargo
+    prize = Prize.new(2, 1)
+    bad_consequence = BadConsequence.newLevelSpecificTreasures('Te intentas escaquear. Pierdes una mano visible.', 0, [TreasureKind::ONEHAND], nil)
+    monsters << Monster.new('Dameargo', 1, prize, badConsequence)
+
+    # Monstruo 13: Pollipólipo volante
+    price = Prize.new(1, 1)
+    bad_consequence = BadConsequence.newLevelNumberOfTreasures('Da mucho asquito. Pierdes 3 niveles.', 3, 0, 0)
+    monsters << Monster.new('Pollipólipo volante', 3, prize, badConsequence)
+
+    # Monstruo 14: Yskhtihyssg-Goth
+    prize = Prize.new(3, 1)
+    bad_consequence = BadConsequence.newDeath('No le hace gracia que pronuncien mal su nombre. Estás muerto.')
+    monsters << Monster.new('Yskhtihyssg-Goth', 12, prize, badConsequence)
+
+    # Monstruo 15: Familia feliz
+    prize = Prize.new(4, 1)
+    bad_consequence = BadConsequence.newLDeath('La familia te atrapa. Estás muerto.')
+    monsters << Monster.new('Familia feliz', 1, prize, badConsequence)
+
+    # Monstruo 16: Roboggoth
+    prize = Prize.new(2, 1)
+    bad_consequence = BadConsequence.newLevelSpecificTreasures('La quinta directiva primaria te obliga a perder 2 niveles y un tesoro 2 manos visible.', 2, [TreasureKind::BOTHHANDS], nil)
+    monsters << Monster.new('Roboggoth', 8, prize, badConsequence)
+
+    # Monstruo 17: El espía
+    prize = Prize.new(1, 1)
+    bad_consequence = BadConsequence.newLevelSpecificTreasures('Te asusta en la noche. Pierdes un casco visible.', 0, [TreasureKind::HELMET], nil)
+    monsters << Monster.new("El espía", 5, prize, badConsequence)
+
+    # Monstruo 18: El Lenguas
+    price = Prize.new(1, 1)
+    bad_consequence = BadConsequence.newLevelNumberOfTreasures('Menudo susto te llevas. Pierdes 2 niveles y 5 tesoros visibles.', 2, 5, 0)
+    monsters << Monster.new('El Lenguas', 20, prize, badConsequence)
+
+    # Monstruo 19: Bicéfalo
+    prize = Prize.new(1, 1)
+    bad_consequence = BadConsequence.newLevelSpecificTreasures('Te faltan manos para tanta cabeza. Pierdes 3 niveles y tus tesoros visibles de las manos.', 3, [TreasureKind::BOTHHANDS], nil)
+    monsters << Monster.new('Bicéfalo', 20, prize, badConsequence)
     
+    @unusedMonsters = monsters
   end
   
+  #Baraja el mazo de cartas de tesoros unusedTreasures.
   def shuffle_treasures
-    
+    @unusedTreasures.shuffle!
   end
   
+  #Baraja el mazo de cartas de monstruos unusedMonsters.
   def shuffle_monsters
-    
+    @unusedMonsters.shuffle!
   end
   
   public
@@ -49,12 +182,14 @@ class CardDealer
     
   end
   
+  #Introduce en el mazo de descartes de tesoros (usedTreasures) el tesoro t.
   def give_treasure_back(t)
-    
+    @usedTreasures << t
   end
   
+  #Introduce en el mazo de descartes de monstruos (usedMonsters) al monstruo m.
   def give_monster_back(m)
-    
+    @usedMonsters << m
   end
   
   def init_cards

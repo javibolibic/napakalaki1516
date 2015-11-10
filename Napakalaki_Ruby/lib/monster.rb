@@ -27,10 +27,12 @@ class Monster
   
   attr_reader :name, :combatLevel, :badConsequence
   
+  #Devuelve el número de niveles ganados proporcionados por su buen rollo.
   def get_levels_gained
     return @prize.levels
   end
   
+  #Devuelve el número de tesoros ganados proporcionados por su buen rollo.
   def get_treasures_gained
     return @prize.treasures
   end
