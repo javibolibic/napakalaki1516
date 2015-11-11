@@ -78,7 +78,7 @@ class Player
   def how_many_visible_treasures(tKind)
     counter = 0
     visibleTreasures.each do |t|
-      counter += 1
+      counter += 1 if (t == tKind)
     end
     return counter
   end
