@@ -14,18 +14,17 @@
 ********************************************************************
 =end
 
-require_relative 'treasure_kind'
 
 class BadConsequence
   @@MAXTREASURES = 10
   
-  def initialize(t, l, nVisible, nHidden, v, h, death)
+  def initialize(t, l, n_visible, n_hidden, v, h, death)
     @text = t
     @levels = l
     @nVisibleTreasures = nVisible
     @nHiddenTreasures = nHidden
-    @specificVisibleTreasures = v
-    @specificHiddenTreasures = h
+    @specific_visible_treasures = v
+    @specific_hidden_treasures = h
     @death = death
   end
   
@@ -34,11 +33,11 @@ class BadConsequence
   #cumplir
   def is_empty
     empty = false
-    empty = true if (@specificHiddenTreasures.empty? && @specificVisibleTreasures.empty? && @nHiddenTreasures == 0 && @nVisibleTreasures == 0)
+    empty = true if (@specific_hidden_treasures.empty? && @specific_visible_treasures.empty? && @n_hidden_treasures == 0 && @n_visible_treasures == 0)
     return empty
   end
   
-  attr_reader :levels, :nVisibleTreasures, :nHiddenTreasures, :specificVisibleTreasures, :specificHiddenTreasures
+  attr_reader :levels, :n_visible_treasures, :n_hidden_treasures, :specific_visible_treasures, :specific_hidden_treasures
   
   def substract_visible_treasure(t)
     
@@ -49,8 +48,8 @@ class BadConsequence
   end
   
   #Los tres métodos siguientes sobrecargan el único constructor que se puede definir en Ruby.
-  def self.new_level_number_of_treasures(t, l, nVisible, nHidden)
-    new(t, l, nVisible, nHidden, Array.new, Array.new, false)
+  def self.new_level_number_of_treasures(t, l, n_visible, n_hidden)
+    new(t, l, n_visible, n_hidden, Array.new, Array.new, false)
   end
   
   def self.new_level_specific_treasures(t, l, v, h)

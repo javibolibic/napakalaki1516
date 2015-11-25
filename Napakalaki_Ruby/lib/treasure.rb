@@ -14,8 +14,6 @@
 ********************************************************************
 =end
 
-require_relative 'treasure_kind'
-
 class Treasure
   def initialize(n, bonus, t)
     @name = n

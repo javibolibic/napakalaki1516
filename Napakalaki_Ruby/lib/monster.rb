@@ -14,18 +14,15 @@
 ********************************************************************
 =end
 
-require_relative 'bad_consequence'
-require_relative 'prize'
-
 class Monster
   def initialize(n, l, b, p)
     @name = n
-    @combatLevel = l
-    @badConsequence = b
+    @combat_level = l
+    @bad_consequence = b
     @prize = p
   end
   
-  attr_reader :name, :combatLevel, :badConsequence
+  attr_reader :name, :combat_level, :bad_consequence
   
   #Devuelve el número de niveles ganados proporcionados por su buen rollo.
   def get_levels_gained
@@ -38,6 +35,6 @@ class Monster
   end
   
   def to_s
-    "Nombre: #{@name} \n Nivel de combate: #{@combatLevel}"
+    "Nombre: #{@name} \n Nivel de combate: #{@combat_level}"
   end
 end

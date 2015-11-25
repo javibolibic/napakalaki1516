@@ -25,15 +25,15 @@ class Player
     @name = name
     @level = 1
     @dead = true
-    @canISteal = true
-    @hiddenTreasures = Array.new
-    @visibleTreasures = Array.new
-    @pendingBadConsequence = nil
+    @can_i_steal = true
+    @hidden_treasures = Array.new
+    @visible_treasures = Array.new
+    @pending_bad_consequence = nil
     @enemy = nil
   end
   
-  attr_reader :name, :level, :dead, :canISteal, :hiddenTreasures, :visibleTreasures
-  attr_writer :pendingBadConsequence, :enemy
+  attr_reader :name, :level, :dead, :can_i_steal, :hidden_treasures, :visible_treasures
+  attr_writer :pending_bad_consequence, :enemy
   
   private
   #Devuelve la vida al jugador, modificando el atributo correspondiente.
@@ -46,7 +46,7 @@ class Player
   def get_combat_level
     combatlevel = @level
 
-    visibleTreasures.each do |t|
+    visible_treasures.each do |t|
       combatlevel += t.bonus
     end
     return combatlevel
@@ -86,7 +86,7 @@ class Player
   #Cambia el estado de jugador a muerto, modificando el correspondiente atributo.
   #Esto ocurre cuando el jugador, por algún motivo, ha perdido todos sus tesoros.
   def die_if_no_treasures
-    @dead = true if (@hiddenTreasures.empty? && @visibleTreasures.empty?)
+    @dead = true if (@hidden_treasures.empty? && @visible_treasures.empty?)
   end
   
   def give_me_a_treasure
@@ -97,7 +97,7 @@ class Player
   #en caso contrario.
   def can_you_give_me_a_treasure
     can = false
-    if(!@visibleTreasures.empty? || !@hiddenTreasures.empty?)
+    if(!@visible_treasures.empty? || !@hidden_treasures.empty?)
       can = true
     end
     return can
@@ -105,7 +105,7 @@ class Player
   
   #Cambia el atributo canISteal a false cuando el jugador roba un tesoro.
   def have_stolen
-    @canISteal = false
+    @can_i_steal = false
   end
   
   public  
@@ -129,7 +129,7 @@ class Player
   #más de 4 tesoros ocultos, y false en caso contrario.
   def valid_state
     v = false
-    v = true if (@pendingBadConsequence.isEmpty && @hiddenTreasures.size <= 4)
+    v = true if (@pending_bad_consequence.isEmpty && @hidden_treasures.size <= 4)
     return v
   end
   

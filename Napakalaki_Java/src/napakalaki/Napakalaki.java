@@ -14,6 +14,7 @@
 package napakalaki;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 
 public class Napakalaki {
@@ -26,7 +27,6 @@ public class Napakalaki {
     
     //Métodos
     private Napakalaki(){
-    
     }
     
     public static Napakalaki getInstance() {
@@ -34,19 +34,56 @@ public class Napakalaki {
     }
     
     private void initPlayers(ArrayList<String> names) {
-        
+        this.players = new ArrayList();
+        for(String name : names) {
+            Player playeract = new Player(name);
+            this.players.add(playeract);
+        }
+
     }
     
     private Player nextPlayer() {
-        return null;
+        int tamplayers = this.players.size();
+        int indice; //Índice del siguiente jugador.
+        //Si no hay un jugador actual, es la primera jugada.
+        if (currentPlayer == null) {
+            Random random = new Random();
+            //Aleatorio = número entre 0 y (tamplayers - 1)
+            indice = random.nextInt(tamplayers);
+        }
+        else {
+            indice = this.players.indexOf(this.currentPlayer);
+            //Aplicamos el índice módulo tamplayers para que se limite al array de jugadores que tenemos.
+            indice = (indice + 1) % tamplayers;
+        }
+        
+        return this.players.get(indice);
     }
     
     private boolean nextTurnAllowed() {
-        return false;
+        boolean allow = false;
+        
+        //Si es la primera jugada, también se permite el turno.
+        if (this.currentPlayer == null || this.currentPlayer.validState())
+            allow = true;
+        return allow;
     }
     
     private void setEnemies(){
-        
+        int tamplayers = this.players.size();
+        Random random = new Random();
+        Player enemy, playeract;
+        //Recorremos todo el ArrayList
+        for (Player player : this.players) {
+            int i = this.players.indexOf(player);
+            int j;
+            do {
+                //j= número aleatorio entre 0 y tamaño de players(excluido)
+                j = random.nextInt(this.players.size());
+            }while(j==i); //Comprueba que el jugador actual no sea el mismo que su enemigo.
+            
+            this.players[i].setEnemy(this.players.get(j));
+        }
     }
     
     public CombatResult developCombat() {
@@ -70,18 +107,20 @@ public class Napakalaki {
     }
     
     public Player getCurrentPlayer() {
-        return null;
+        return this.currentPlayer;
     }
     
     public Monster getCurrentMonster() {
-        return null;
+        return this.currentMonster;
     }
     
     public boolean nextTurn() {
         return false;
     }
     
+    //Compara result con el valor WINGAME del enumerado
+    //Devuelve true si result == WINGAME, false en caso contrario
     public boolean endOfGame(CombatResult result) {
-        return false;
+        return result == CombatResult.WINGAME;
     }
 }

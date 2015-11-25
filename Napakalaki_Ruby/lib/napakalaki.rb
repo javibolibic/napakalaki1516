@@ -14,31 +14,51 @@
 ********************************************************************
 =end
 
-require_relative 'monster'
-require_relative 'player'
-require_relative 'card_dealer'
 require 'singleton'
 
 class Napakalaki
   include Singleton
   
-  attr_accessor :currentPlayer, :players, :currentMonster, :dealer
+  attr_accessor :current_player, :players, :current_monster, :dealer
   
   private
   def init_players(names)
-    
+    names.each do |name|
+      playeract = Player.new(name)
+      @players.add(playeract)
+    end
   end
   
   def next_player()
+    tamplayers = @players.size
     
+    if (@current_player == nil)
+      indice = rand(tamplayers)
+    else
+      indice = @players.index(@current_player)
+      
+      indice = (indice + 1) % tamplayers
+    end
+    return @players.at(indice)
   end
   
   def next_turn_allowed
-    
+    allow = false
+    allow = true if (@current_player == nil || @current_player.valid_state)
+    return allow
   end
   
   def set_enemies
-    
+    tamplayers = @players.size;
+    players.each do |player|
+      i = @players.index(player)
+      loop do
+        j = rand(@players.size)
+        break if (j==i)
+      end
+      
+      @players[i].enemy = @players[j]
+    end
   end
   
   public
@@ -67,7 +87,7 @@ class Napakalaki
   end
   
   def end_of_game(result)
-    
+    return result == WINGAME
   end
   
 end

@@ -30,7 +30,8 @@ public class Player {
     
     //Métodos
     public Player(String name) {
-    
+        this.name = name;
+        this.level = 1;
     }
     
     //Devuelve el nombre del jugador.
@@ -71,8 +72,21 @@ public class Player {
         
     }
     
+    //Antes de cada combate, y antes de conocer el monstruo con el que se enfrentará, el jugador puede
+    //equiparse los tesoros que desee siempre que cumpla las reglas sobre la cantidad y tipos de tesoros
+    //que se pueden tener equipados. Equipar un tesoro implica quitarlo del conjunto de los ocultos y
+    //pasarlo al de los equipados.
     private boolean canMakeTreasureVisible(Treasure t) {
-        return false;
+        int ntreasuresonehand = 0;
+        boolean treasurebothhands = false, output = false;
+        if (this.visibleTreasures.size()<4){
+            for(Treasure tesoro : this.visibleTreasures) {
+                if (tesoro.getType() == TreasureKind.ONEHAND)
+                    ntreasuresonehand++;
+                else if (tesoro.getType() == TreasureKind.BOTHHANDS)
+                    treasurebothhands = true;
+            }
+        }
     }
     
     //Devuelve el número de tesoros visibles de tipo tKind que tiene el jugador.
