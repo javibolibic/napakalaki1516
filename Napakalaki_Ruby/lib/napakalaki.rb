@@ -27,9 +27,10 @@ class Napakalaki
       playeract = Player.new(name)
       @players.add(playeract)
     end
+    next_player
   end
   
-  def next_player()
+  def next_player
     tamplayers = @players.size
     
     if (@current_player == nil)

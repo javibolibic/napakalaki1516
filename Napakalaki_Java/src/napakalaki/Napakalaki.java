@@ -39,14 +39,14 @@ public class Napakalaki {
             Player playeract = new Player(name);
             this.players.add(playeract);
         }
-
+        nextPlayer(); //Para rellenar currentPlayer
     }
     
     private Player nextPlayer() {
         int tamplayers = this.players.size();
         int indice; //Índice del siguiente jugador.
         //Si no hay un jugador actual, es la primera jugada.
-        if (currentPlayer == null) {
+        if (this.currentPlayer == null) {
             Random random = new Random();
             //Aleatorio = número entre 0 y (tamplayers - 1)
             indice = random.nextInt(tamplayers);

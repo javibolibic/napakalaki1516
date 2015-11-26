@@ -14,6 +14,7 @@
 package napakalaki;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 public class Player {
     //Atributos
@@ -78,15 +79,25 @@ public class Player {
     //pasarlo al de los equipados.
     private boolean canMakeTreasureVisible(Treasure t) {
         int ntreasuresonehand = 0;
-        boolean treasurebothhands = false, output = false;
+        boolean treasurebothhands = false, output = false, mismotipo=false;
         if (this.visibleTreasures.size()<4){
             for(Treasure tesoro : this.visibleTreasures) {
                 if (tesoro.getType() == TreasureKind.ONEHAND)
                     ntreasuresonehand++;
                 else if (tesoro.getType() == TreasureKind.BOTHHANDS)
                     treasurebothhands = true;
+                else if (t.getType() == tesoro.getType())     
+                    mismotipo = true;
             }
+            if (ntreasuresonehand < 3 && t.getType() == TreasureKind.ONEHAND)
+                output = true;
+            else if (ntreasuresonehand == 0 && treasurebothhands == true)
+                output = true;
+            else if (mismotipo == false)
+                output = true;
         }
+        
+        return output;
     }
     
     //Devuelve el número de tesoros visibles de tipo tKind que tiene el jugador.
@@ -161,8 +172,12 @@ public class Player {
         this.enemy = enemy;
     }
     
+    //Devuelve un tesoro elegido al azar de entre los tesoros ocultos del jugador.
     private Treasure giveMeATreasure() {
-        return null;
+        Random random = new Random();
+        int index;
+        index = random.nextInt(this.hiddenTreasures.size());
+        return this.hiddenTreasures.get(index);
     }
     
     //Devuelve true si el jugador no ha robado ningún tesoro a su enemigo y false en

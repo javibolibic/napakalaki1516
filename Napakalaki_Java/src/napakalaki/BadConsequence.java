@@ -90,11 +90,26 @@ public class BadConsequence {
     }
     
     public void substractVisibleTreasure(Treasure t) {
-        
+        //¿Es esto lo que hay que hacer?
+        if (t.getType() == null) {
+            if (t.getBonus() != 0)
+                this.nVisibleTreasures--;
+        }
+        else {
+            this.specificVisibleTreasures.remove(t.getType());
+        }
     }
     
     public void substractHiddenTreasure(Treasure t) {
-        
+        //¿Es esto lo que hay que hacer?
+        if (t.getType() == null) {
+            if (t.getBonus() != 0) {
+                this.nHiddenTreasures--;
+            }
+        }
+        else {
+            this.specificHiddenTreasures.remove(t.getType());
+        }
     }
     
     public BadConsequence adjustToFitTreasureList(ArrayList<Treasure> v, ArrayList<Treasure> h) {

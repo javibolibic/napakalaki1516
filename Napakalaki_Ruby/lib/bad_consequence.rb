@@ -21,8 +21,8 @@ class BadConsequence
   def initialize(t, l, n_visible, n_hidden, v, h, death)
     @text = t
     @levels = l
-    @nVisibleTreasures = nVisible
-    @nHiddenTreasures = nHidden
+    @n_visible_treasures = nVisible
+    @n_hidden_treasures = nHidden
     @specific_visible_treasures = v
     @specific_hidden_treasures = h
     @death = death
@@ -40,11 +40,23 @@ class BadConsequence
   attr_reader :levels, :n_visible_treasures, :n_hidden_treasures, :specific_visible_treasures, :specific_hidden_treasures
   
   def substract_visible_treasure(t)
-    
+    if (t.type == nil)
+      if (t.bonus != 0)
+        @n_visible_treasures -= 1
+      end
+    else
+      @specific_visible_treasures.delete(t.type)
+    end
   end
   
   def substract_hidden_treasure(t)
-    
+    if (t.type == nil)
+      if (t.bonus != nil)
+        @n_hidden_treasures -= 1
+      end
+    else
+      @specific_hidden_treasures.delete(t.type)
+    end
   end
   
   #Los tres métodos siguientes sobrecargan el único constructor que se puede definir en Ruby.

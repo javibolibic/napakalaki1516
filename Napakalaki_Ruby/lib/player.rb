@@ -71,13 +71,34 @@ class Player
   end
   
   def can_make_treasure_visible(t)
-    
+    n_treasures_one_hand = 0
+    treasure_both_hands = false, output = false, mismo_tipo = false
+    if(@visible_treasures.size < 4)
+      @visible_treasures.each do |tesoro|
+        if (tesoro.type == ONEHAND)
+          n_treasures_one_hand+=1
+        elsif (tesoro.type == BOTHHANDS)
+          treasure_both_hands = true
+        elsif (t.type == tesoro.type)
+          mismo_tipo = true
+        end
+      end
+      
+      if (n_treasures_one_hand < 3 && t.type == ONEHAND)
+        output = true
+      elsif (n_treasures_one_hand == 0 && treasure_both_hands == true)
+        output = true
+      elsif (mismo_tipo == false)
+        output = true
+      end
+    end
+    return output
   end
   
   #Devuelve el número de tesoros visibles de tipo tKind que tiene el jugador.
   def how_many_visible_treasures(tKind)
     counter = 0
-    visibleTreasures.each do |t|
+    @visible_treasures.each do |t|
       counter += 1 if (t == tKind)
     end
     return counter
@@ -90,7 +111,8 @@ class Player
   end
   
   def give_me_a_treasure
-    
+    index = rand(@hidden_treasures.size)
+    return @hidden_treasures.at(index)
   end
   
   #Devuelve true si el jugador tiene tesoros para ser robados por otro jugador y false

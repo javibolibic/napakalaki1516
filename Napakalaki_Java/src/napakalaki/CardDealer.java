@@ -219,7 +219,9 @@ public class CardDealer {
     }
     
     public Treasure nextTreasure() {
-        return null;
+        
+        
+        return t;
     }
     
     public Monster nextMonster() {
