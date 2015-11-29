@@ -82,20 +82,31 @@ public class Napakalaki {
                 j = random.nextInt(this.players.size());
             }while(j==i); //Comprueba que el jugador actual no sea el mismo que su enemigo.
             
-            this.players[i].setEnemy(this.players.get(j));
+            this.players.get(i).setEnemy(this.players.get(j));
         }
     }
     
     public CombatResult developCombat() {
-        return null;
+        Monster m = this.currentMonster;
+        CombatResult combatResult = this.currentPlayer.combat(m);
+        this.dealer.giveMonsterBack(m);
+        
+        
+        return combatResult;
     }
     
     public void discardVisibleTreasures(ArrayList<Treasure> treasures) {
-    
+        for(Treasure treasure : treasures) {
+            this.currentPlayer.discardVisibleTreasure(treasure);
+            this.dealer.giveTreasureBack(treasure);
+        }
     }
     
     public void discardHiddenTreasures(ArrayList<Treasure> treasures) {
-    
+        for(Treasure treasure : treasures) {
+            this.currentPlayer.discardHiddenTreasure(treasure);
+            this.dealer.giveTreasureBack(treasure);
+        }
     }
     
     public void makeTreasuresVisible(ArrayList<Treasure> treasures) {
@@ -103,7 +114,10 @@ public class Napakalaki {
     }
     
     public void initGame(ArrayList<String> players) {
-    
+        this.initPlayers(players);
+        this.setEnemies();
+        this.dealer.initCards();
+        this.nextTurn();
     }
     
     public Player getCurrentPlayer() {
@@ -115,7 +129,17 @@ public class Napakalaki {
     }
     
     public boolean nextTurn() {
-        return false;
+        boolean stateOK = this.nextTurnAllowed();
+        if(stateOK) {
+            this.currentMonster = this.dealer.nextMonster();
+            this.currentPlayer = this.nextPlayer();
+            boolean dead = this.currentPlayer.isDead();
+            if(dead){
+                this.currentPlayer.initTreasures();
+            }
+        }
+        
+        return stateOK;
     }
     
     //Compara result con el valor WINGAME del enumerado

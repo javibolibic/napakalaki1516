@@ -73,6 +73,10 @@ public class Player {
         
     }
     
+    private void applyBadConsequence(Monster m) {
+    
+    }
+    
     //Antes de cada combate, y antes de conocer el monstruo con el que se enfrentará, el jugador puede
     //equiparse los tesoros que desee siempre que cumpla las reglas sobre la cantidad y tipos de tesoros
     //que se pueden tener equipados. Equipar un tesoro implica quitarlo del conjunto de los ocultos y
@@ -130,7 +134,24 @@ public class Player {
     }
     
     public CombatResult combat(Monster m) {
-        return null;
+        int myLevel = this.getCombatLevel();
+        int monsterLevel = m.getCombatLevel();
+        CombatResult combatResult;
+        if(myLevel > monsterLevel) {
+            this.applyPrize(m);
+            
+            if(this.level >= this.MAXLEVEL){
+                combatResult = CombatResult.WINGAME;
+            }
+            else combatResult = CombatResult.WIN;
+        }
+        else {
+            this.applyBadConsequence(m);
+            
+            combatResult = CombatResult.LOSE;
+        }
+        
+        return combatResult;
     }
     
     public void makeTreasureVisible(Treasure t) {
@@ -138,11 +159,19 @@ public class Player {
     }
     
     public void discardVisibleTreasure(Treasure t) {
-        
+        this.visibleTreasures.remove(t);
+        if((this.pendingBadConsequence != null) && (!this.pendingBadConsequence.isEmpty())){
+            this.pendingBadConsequence.substractVisibleTreasure(t);
+        }
+        this.dieIfNoTreasures();
     }
     
     public void discardHiddenTreasure(Treasure t) {
-        
+        this.visibleTreasures.remove(t);
+        if((this.pendingBadConsequence != null) && (!this.pendingBadConsequence.isEmpty())){
+            this.pendingBadConsequence.substractHiddenTreasure(t);
+        }
+        this.dieIfNoTreasures();
     }
     
     //Devuelve true cuando el jugador no tiene ningún mal rollo que cumplir y no tiene

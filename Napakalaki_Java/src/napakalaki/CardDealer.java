@@ -219,13 +219,29 @@ public class CardDealer {
     }
     
     public Treasure nextTreasure() {
+        if (this.unusedTreasures.isEmpty()) {
+            this.unusedTreasures = this.usedTreasures;
+            shuffleTreasures();
+            this.usedTreasures.clear();
+        }
         
+        Treasure t = this.unusedTreasures.get(0);
+        this.unusedTreasures.remove(0);
         
         return t;
     }
     
     public Monster nextMonster() {
-        return null;
+        if (this.unusedMonsters.isEmpty()) {
+            this.unusedMonsters = this.usedMonsters;
+            shuffleMonsters();
+            this.usedMonsters.clear();
+        }
+        
+        Monster m = this.unusedMonsters.get(0);
+        this.unusedMonsters.remove(0);
+        
+        return m;
     }
     
     //Introduce en el mazo de descartes de tesoros (usedTreasures) el tesoro t.
@@ -239,6 +255,7 @@ public class CardDealer {
     }
     
     public void initCards() {
-        
+        this.initTreasureCardDeck();
+        this.initMonsterCardDeck();
     }
 }
