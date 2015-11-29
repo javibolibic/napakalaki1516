@@ -173,11 +173,27 @@ class CardDealer
   
   public
   def next_treasure
+    if (@unused_treasures.empty?)
+      @unused_treasures = @used_treasures
+      shuffle_treasures
+      @used_treasures.clear
+    end
+    t = @unused_treasures.at(0)
+    @unused_treasures.delete(t)
     
+    return t
   end
   
   def next_monster
+    if (@unused_monsters.empty?)
+      @unused_monsters = @used_monsters
+      shuffle_monsters
+      @used_monsters.clear
+    end
+    m = @unused_monsters.at(0)
+    @unused_monsters.delete(m)
     
+    return m
   end
   
   #Introduce en el mazo de descartes de tesoros (usedTreasures) el tesoro t.
@@ -191,6 +207,7 @@ class CardDealer
   end
   
   def init_cards
-    
+    init_treasure_card_deck
+    init_monsters_card_deck
   end
 end

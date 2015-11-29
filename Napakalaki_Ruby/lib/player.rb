@@ -132,7 +132,21 @@ class Player
   
   public  
   def combat(m)
-    
+    my_level = get_combat_level
+    monster_level = m.get_combat_level
+    if(my_level > monster_level)
+        apply_prize(m)
+        
+        if(@level >= @@MAXLEVEL)
+          combat_result = CombatResult.wingame
+        else
+          combat_result = CombatResult.win
+        end
+    else
+      apply_bad_consequence(m)
+      
+      combat_result = CombatResult.lose
+    end
   end
   
   def make_treasure_visible(t)
@@ -140,11 +154,19 @@ class Player
   end
   
   def discard_visible_treasure(t)
-    
+    @visible_treasures.delete(t)
+    if((@pending_bad_consequence != nil) && (!@pending_bad_consequence.is_empty))
+      @pending_bad_consequence.substract_visible_treasure(t)
+    end
+    die_if_no_treasures
   end
   
   def discard_hidden_treasure(t)
-    
+    @visible_treasures.delete(t)
+    if((@pending_bad_consequence != nil) && (!@pending_bad_consequence.is_empty))
+      @pending_bad_consequence.substract_hidden_treasure(t)
+    end
+    die_if_no_treasures
   end
   
   #Devuelve true cuando el jugador no tiene ningún mal rollo que cumplir y no tiene

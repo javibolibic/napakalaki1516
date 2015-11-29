@@ -64,15 +64,25 @@ class Napakalaki
   
   public
   def develop_combat
+    m = @current_monster
+    combat_result = @current_player.combat(m)
+    @dealer.give_monster_back(m)
     
+    combat_result
   end
   
   def discard_visible_treasures(treasures)
-    
+    treasures.each do |treasure|
+      @current_player.discard_visible_treasure(treasure)
+      @dealer.give_treasure_back(treasure)
+    end
   end
   
-  def discad_hidden_treasures(treasures)
-    
+  def discard_hidden_treasures(treasures)
+    treasures.each do |treasure|
+      @current_player.discard_hidden_treasure(treasure)
+      @dealer.give_treasure_back(treasure)
+    end
   end
   
   def make_treasures_visible(treasures)
@@ -80,11 +90,24 @@ class Napakalaki
   end
   
   def init_game(players)
-    
+    self.init_players(players)
+    self.set_enemies
+    @dealer.init_cards
+    self.next_turn
   end
   
   def next_turn
+    state_ok = next_turn_allowed
+    if(state_ok)
+      @current_monster = @dealer.next_monster
+      @current_player = next_player
+      dead = @current_player.is_dead
+      if(dead)
+        @current_player.init_treasures
+      end
+    end
     
+    state_ok
   end
   
   def end_of_game(result)
