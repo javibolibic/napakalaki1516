@@ -70,11 +70,30 @@ public class Player {
     }
     
     private void applyPrize(Monster m) {
+        int nLevels = m.getLevelsGained();
+        int l = nLevels;
+        this.incrementLevels(l);
+        int nTreasures = m.getTreasuresGained();
         
+        if(nTreasures > 0) {
+            CardDealer dealer = CardDealer.getInstance();
+            
+            for(int i=0; i<nTreasures; i++) {
+                Treasure treasure = dealer.nextTreasure();
+                this.hiddenTreasures.add(treasure);
+            }
+        }
     }
     
     private void applyBadConsequence(Monster m) {
-    
+        BadConsequence badConsequence = m.getBadConsequence();
+        int nLevels = badConsequence.getLevels();
+        int l = nLevels;
+        this.decrementLeveles(l);
+        ArrayList<Treasure> v = this.visibleTreasures, h = this.hiddenTreasures;
+        BadConsequence pendingBad = badConsequence.adjustToFitTreasureList(v, h);
+        BadConsequence b = pendingBad;
+        this.setPendingBadConsequence(b);
     }
     
     //Antes de cada combate, y antes de conocer el monstruo con el que se enfrentará, el jugador puede
@@ -155,7 +174,11 @@ public class Player {
     }
     
     public void makeTreasureVisible(Treasure t) {
-        
+        boolean canI = this.canMakeTreasureVisible(t);
+        if(canI) {
+            this.visibleTreasures.add(t);
+            this.hiddenTreasures.remove(t);
+        }
     }
     
     public void discardVisibleTreasure(Treasure t) {
@@ -184,7 +207,20 @@ public class Player {
     }
     
     public void initTreasures() {
-        
+        CardDealer dealer = CardDealer.getInstance();
+        Dice dice = Dice.getInstance();
+        this.bringToLife();
+        Treasure treasure = dealer.nextTreasure();
+        this.hiddenTreasures.add(treasure);
+        int number = dice.nextNumber();
+        if(number > 1) {
+            treasure = dealer.nextTreasure();
+            this.hiddenTreasures.add(treasure);
+        }
+        if(number == 6) {
+            treasure = dealer.nextTreasure();
+            this.hiddenTreasures.add(treasure);
+        }
     }
     
     //Devuelve el nivel del jugador.
@@ -193,7 +229,17 @@ public class Player {
     }
     
     public Treasure stealTreasure() {
-        return null;
+        boolean canI = this.canISteal;
+        Treasure treasure = null;
+        if (canI) {
+            boolean canYou = this.enemy.canYouGiveMeATreasure();
+            if (canYou) {
+                treasure = this.enemy.giveMeATreasure();
+                this.hiddenTreasures.add(treasure);
+                this.haveStolen();
+            }
+        }
+        return treasure;
     }
     
     //Asigna valor al atributo que referencia al enemigo del jugador.
@@ -230,6 +276,11 @@ public class Player {
     }
     
     public void discardAllTreasures() {
-        
+        for(Treasure treasure : this.visibleTreasures) {
+            this.discardVisibleTreasure(treasure);
+        }
+        for(Treasure treasure : this.hiddenTreasures) {
+            this.discardHiddenTreasure(treasure);
+        }
     }
 }
