@@ -86,7 +86,9 @@ class Napakalaki
   end
   
   def make_treasures_visible(treasures)
-    
+    treasures.each do |t|
+      @current_player.make_treasure_visible(t)
+    end
   end
   
   def init_game(players)

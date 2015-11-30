@@ -63,11 +63,30 @@ class Player
   end
   
   def apply_prize(m)
+    n_levels = m.get_levels_gained
+    l = n_levels
+    increment_levels(l)
+    n_treasures = m.get_treasures_gained
     
+    if(n_treasures > 0)
+      dealer = CardDealer.instance
+      
+      for counter in 0..n_treasures
+        treasure = dealer.next_treasure
+        @hidden_treasures << treasure
+      end
+    end
   end
   
-  def apply_bad_consequence
-    
+  def apply_bad_consequence(m)
+    bad_consequence = m.bad_consequence
+    n_levels = bad_consequence.levels
+    l = n_levels
+    decrement_levels(l)
+    v = @visible_treasures, h = @hidden_treasures
+    pendingBad = bad_consequence.adjust_to_fit_treasure_lists(v, h);
+    b = pendingBad
+    @pending_bad_consequence = b
   end
   
   def can_make_treasure_visible(t)
@@ -150,7 +169,11 @@ class Player
   end
   
   def make_treasure_visible(t)
-    
+    can_i = can_make_treasure_visible(t)
+    if (can_i)
+      @visible_treasures << t
+      @hidden_treasures.delete(t)
+    end
   end
   
   def discard_visible_treasure(t)
@@ -178,14 +201,42 @@ class Player
   end
   
   def init_treasures
-    
+    dealer = CardDealer.instance
+    dice = Dice.instance
+    bring_to_life
+    treasure = dealer.next_treasure
+    @hidden_treasures << treasure
+    number = dice.next_number
+    if(number > 1)
+      treasure = dealer.next_treasure
+      @hidden_treasures << treasure
+    end
+    if(number == 6)
+      treasure = dealer.next_treasure
+      @hidden_treasures << treasure
+    end
   end
   
   def steal_treasure
-    
+    can_i = @can_i_steal
+    treasure = nil
+    if (can_i)
+      can_you = @enemy.can_you_give_me_a_treasure
+      if(can_you)
+        treasure = @enemy.give_me_a_treasure
+        @hidden_treasures << treasure
+        have_stolen
+      end
+    end
+    treasure
   end
   
   def discard_all_treasures
-    
+    @visible_treasures.each do |treasure|
+      discard_visible_treasure(treasure)
+    end
+    @hidden_treasures.each do |treasure|
+      discard_hidden_treasure(treasure)
+    end
   end
 end

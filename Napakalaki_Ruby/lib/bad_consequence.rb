@@ -73,7 +73,43 @@ class BadConsequence
   end
   
   def adjust_to_fit_treasure_lists(v, h)
+    t = @text
+    l = @levels, result_n_visible_treasures = 0, result_n_hidden_treasures = 0
+    result_specific_visible_treasures = Array.new, result_specific_hidden_treasures = Array.new
     
+    if(@n_visible_treasures > 0 || @n_hidden_treasures > 0)
+      result_n_visible_treasures = (v.size - @n_visible_treasures) % v.size
+      result_n_hidden_treasures = (h.size - @n_hidden_treasures) % h.size
+      b_c = BadConsequence.new(t, l, result_n_visible_treasures, result_n_hidden_treasures)
+      
+    elsif(!@specific_visible_treasures.empty? || !@specific_hidden_treasures.empty?)
+      @specific_visible_treasures.each do m_v_treasure
+        v.each do |p_v_treasure|
+          if(m_v_treasure == p_v_treasure.type)
+            result_specific_visible_treasures << m_v_treasure
+            v.delete(p_v_treasure)
+            break
+          end
+        end
+      end
+      
+      @specific_hidden_treasures.each do m_h_treasure
+        h.each do |p_h_treasure|
+          if(m_h_treasure == p_h_treasure.type)
+            result_specific_hidden_treasures << m_h_treasure
+            h.delete(p_h_treasure)
+            break
+          end
+        end
+      end
+      
+      b_c = BadConsequence.new(t, l, result_specific_visible_treasures, result_specific_hidden_treasures)
+      
+    else
+      b_c = BadConsequence.new(t, l, 0, 0)
+    end
+    
+    b_c
   end
   
   def to_s
