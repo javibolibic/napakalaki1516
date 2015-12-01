@@ -25,8 +25,8 @@ public class Player {
     private boolean canISteal = true;
     
     private Player enemy;
-    private ArrayList<Treasure> hiddenTreasures;
-    private ArrayList<Treasure> visibleTreasures;
+    private ArrayList<Treasure> hiddenTreasures = new ArrayList();
+    private ArrayList<Treasure> visibleTreasures = new ArrayList();
     private BadConsequence pendingBadConsequence;
     
     //Métodos
@@ -92,8 +92,7 @@ public class Player {
         this.decrementLeveles(l);
         ArrayList<Treasure> v = this.visibleTreasures, h = this.hiddenTreasures;
         BadConsequence pendingBad = badConsequence.adjustToFitTreasureList(v, h);
-        BadConsequence b = pendingBad;
-        this.setPendingBadConsequence(b);
+        this.setPendingBadConsequence(pendingBad);
     }
     
     //Antes de cada combate, y antes de conocer el monstruo con el que se enfrentará, el jugador puede
@@ -229,7 +228,7 @@ public class Player {
     }
     
     public Treasure stealTreasure() {
-        boolean canI = this.canISteal;
+        boolean canI = this.canISteal();
         Treasure treasure = null;
         if (canI) {
             boolean canYou = this.enemy.canYouGiveMeATreasure();
@@ -282,5 +281,10 @@ public class Player {
         for(Treasure treasure : this.hiddenTreasures) {
             this.discardHiddenTreasure(treasure);
         }
+    }
+    
+    @Override
+    public String toString() {
+        return this.name;
     }
 }

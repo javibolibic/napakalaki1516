@@ -19,9 +19,9 @@ import java.util.Random;
 
 public class Napakalaki {
     //Atributos
-    private static final Napakalaki instance = null;
+    private static final Napakalaki instance = new Napakalaki();
     private Monster currentMonster;
-    private CardDealer dealer;
+    private CardDealer dealer = CardDealer.getInstance();
     private ArrayList<Player> players;
     private Player currentPlayer;
     
@@ -118,7 +118,7 @@ public class Napakalaki {
     public void initGame(ArrayList<String> players) {
         this.initPlayers(players);
         this.setEnemies();
-        this.dealer.initCards();
+        dealer.initCards();
         this.nextTurn();
     }
     

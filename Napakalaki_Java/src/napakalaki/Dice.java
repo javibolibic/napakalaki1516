@@ -16,10 +16,9 @@ package napakalaki;
 import java.util.Random;
 
 public class Dice {
-    private static final Dice instance = null;
+    private static final Dice instance = new Dice();
     
     private Dice() {
-        
     }
     
     public static Dice getInstance() {

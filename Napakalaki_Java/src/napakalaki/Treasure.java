@@ -40,4 +40,9 @@ public class Treasure {
     public TreasureKind getType() {
         return this.type;
     }
+    
+    @Override
+    public String toString() {
+        return "Nombre: " + this.name + ", Bonus: " + this.bonus + ", Tipo: " + this.type;
+    }
 }
