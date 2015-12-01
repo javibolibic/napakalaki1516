@@ -127,7 +127,7 @@ public class CardDealer {
         monstruos.add(new Monster("Angeles de la noche ibicenca", 14, badConsequence, prize));
         
         //Monstruo 5: El gorrón en el umbral
-        badConsequence = new BadConsequence("Pierdes todos tus tesoros visibles", 0, BadConsequence.MAXTREASURES, 0);
+        badConsequence = new BadConsequence("Pierdes todos tus tesoros visibles", 0, new ArrayList(Arrays.asList(TreasureKind.ARMOR,TreasureKind.HELMET, TreasureKind.BOTHHANDS, TreasureKind.ONEHAND, TreasureKind.ONEHAND, TreasureKind.SHOES)), new ArrayList());
         prize = new Prize(3, 1);
         monstruos.add(new Monster("El gorrón en el umbral", 10, badConsequence, prize));
         

@@ -200,7 +200,7 @@ public class Player {
     //más de 4 tesoros ocultos, y false en caso contrario.
     public boolean validState() {
         boolean v = false;
-        if (this.pendingBadConsequence.isEmpty() && this.hiddenTreasures.size() <= 4)
+        if (this.pendingBadConsequence == null || (this.pendingBadConsequence.isEmpty() && this.hiddenTreasures.size() <= 4))
             v = true;
         return v;
     }
@@ -249,8 +249,7 @@ public class Player {
     //Devuelve un tesoro elegido al azar de entre los tesoros ocultos del jugador.
     private Treasure giveMeATreasure() {
         Random random = new Random();
-        int index;
-        index = random.nextInt(this.hiddenTreasures.size());
+        int index = random.nextInt(this.hiddenTreasures.size());
         return this.hiddenTreasures.get(index);
     }
     
@@ -264,7 +263,7 @@ public class Player {
     //en caso contrario.
     private boolean canYouGiveMeATreasure() {
         boolean youcan = false;
-        if (!this.hiddenTreasures.isEmpty() || !this.visibleTreasures.isEmpty())
+        if (!this.hiddenTreasures.isEmpty())
             youcan = true;
         return youcan;
     }
