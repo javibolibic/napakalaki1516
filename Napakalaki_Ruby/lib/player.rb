@@ -16,6 +16,7 @@
 
 require_relative 'dice'
 require_relative 'bad_consequence'
+require_relative 'combat_result'
 
 module Napakalaki
   class Player
@@ -94,16 +95,16 @@ module Napakalaki
       treasure_both_hands = false, output = false, mismo_tipo = false
       if(@visible_treasures.size < 4)
         @visible_treasures.each do |tesoro|
-          if (tesoro.type == ONEHAND)
+          if (tesoro.type == TreasureKind::ONEHAND)
             n_treasures_one_hand+=1
-          elsif (tesoro.type == BOTHHANDS)
+          elsif (tesoro.type == TreasureKind::BOTHHANDS)
             treasure_both_hands = true
           elsif (t.type == tesoro.type)
             mismo_tipo = true
           end
         end
 
-        if (n_treasures_one_hand < 3 && t.type == ONEHAND)
+        if (n_treasures_one_hand < 3 && t.type == TreasureKind::ONEHAND)
           output = true
         elsif (n_treasures_one_hand == 0 && treasure_both_hands == true)
           output = true
@@ -129,21 +130,6 @@ module Napakalaki
       @dead = true if (@hidden_treasures.empty? && @visible_treasures.empty?)
     end
 
-    def give_me_a_treasure
-      index = rand(@hidden_treasures.size)
-      return @hidden_treasures.at(index)
-    end
-
-    #Devuelve true si el jugador tiene tesoros para ser robados por otro jugador y false
-    #en caso contrario.
-    def can_you_give_me_a_treasure
-      can = false
-      if(!@visible_treasures.empty? || !@hidden_treasures.empty?)
-        can = true
-      end
-      return can
-    end
-
     #Cambia el atributo canISteal a false cuando el jugador roba un tesoro.
     def have_stolen
       @can_i_steal = false
@@ -157,13 +143,13 @@ module Napakalaki
           apply_prize(m)
 
           if(@level >= @@MAXLEVEL)
-            combat_result = CombatResult.wingame
+            combat_result = CombatResult::WINGAME
           else
-            combat_result = CombatResult.win
+            combat_result = CombatResult::WIN
           end
       else
         apply_bad_consequence(m)
-        combat_result = CombatResult.lose
+        combat_result = CombatResult::LOSE
       end
     end
 
@@ -195,7 +181,9 @@ module Napakalaki
     #más de 4 tesoros ocultos, y false en caso contrario.
     def valid_state
       v = false
-      v = true if (@pending_bad_consequence.isEmpty && @hidden_treasures.size <= 4)
+      puts
+      puts @pending_bad_consequence.to_s
+      v = true if (@pending_bad_consequence.is_empty && @hidden_treasures.size <= 4)
       return v
     end
 
@@ -215,10 +203,24 @@ module Napakalaki
         @hidden_treasures << treasure
       end
     end
+    
+    #Devuelve true si el jugador tiene tesoros para ser robados por otro jugador y false
+    #en caso contrario.
+    def can_you_give_me_a_treasure
+      can = false
+      if(!@visible_treasures.empty? || !@hidden_treasures.empty?)
+        can = true
+      end
+      return can
+    end
+    
+    def give_me_a_treasure
+      index = rand(@hidden_treasures.size)
+      return @hidden_treasures.at(index)
+    end
 
     def steal_treasure
       can_i = @can_i_steal
-      treasure = nil
       if (can_i)
         can_you = @enemy.can_you_give_me_a_treasure
         if(can_you)
@@ -237,6 +239,10 @@ module Napakalaki
       @hidden_treasures.each do |treasure|
         discard_hidden_treasure(treasure)
       end
+    end
+    
+    def to_s
+      @name
     end
   end
 end

@@ -23,5 +23,9 @@ module Napakalaki
     end
 
     attr_reader :name, :bonus, :type
+    
+    def to_s
+      @name
+    end
   end
 end

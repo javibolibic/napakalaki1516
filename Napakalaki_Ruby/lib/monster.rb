@@ -16,7 +16,7 @@
 
 module Napakalaki
   class Monster
-    def initialize(n, l, b, p)
+    def initialize(n, l, p, b)
       @name = n
       @combat_level = l
       @bad_consequence = b

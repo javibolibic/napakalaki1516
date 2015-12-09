@@ -138,16 +138,16 @@ class GameTester
      
     begin #Se descartan tesoros hasta que se vuelve al menÃº anterior
       if visible then
-        how_many = show_treasures("Elige tesoros visibles para descartar", a_player.get_visible_treasures(), true)
+        how_many = show_treasures("Elige tesoros visibles para descartar", a_player.visible_treasures(), true)
       else 
-        how_many = show_treasures("Elige tesoros ocultos para descartar", a_player.get_hidden_treasures(), true)
+        how_many = show_treasures("Elige tesoros ocultos para descartar", a_player.hidden_treasures(), true)
       end
       option = get_treasure (how_many)
       if (option > -1) then 
         if visible then
-          @game.discard_visible_treasures ([a_player.get_visible_treasures().at(option)])
+          @game.discard_visible_treasures ([a_player.visible_treasures.at(option)])
         else
-          @game.discard_hidden_treasures ([a_player.get_hidden_treasures().at(option)])          
+          @game.discard_hidden_treasures ([a_player.hidden_treasures.at(option)])          
         end
       end
     end while (option != -1)  
@@ -156,10 +156,10 @@ class GameTester
   def manage_make_treasure_visible (a_player)
        
     begin #Se hacen tesoros visibles hasta que se vuelve al menÃº anterior
-      how_many = show_treasures("Elige tesoros para intentar hacerlos visibles", a_player.get_hidden_treasures(), true)
+      how_many = show_treasures("Elige tesoros para intentar hacerlos visibles", a_player.hidden_treasures, true)
       option = get_treasure (how_many);
       if (option > -1) then
-        a_player.makeTreasureVisible (a_player.get_hidden_treasures()[option])
+        a_player.make_treasure_visible(a_player.hidden_treasures.at(option))
       end
     end while (option != -1)
   end
