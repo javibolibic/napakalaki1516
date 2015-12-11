@@ -86,8 +86,8 @@ module Napakalaki
       decrement_levels(l)
       v = @visible_treasures
       h = @hidden_treasures
-      b = b.adjust_to_fit_treasure_lists(v, h)
-      @pending_bad_consequence = b
+      pending_bad = b.adjust_to_fit_treasure_lists(v, h)
+      @pending_bad_consequence = pending_bad
     end
 
     def can_make_treasure_visible(t)
@@ -181,8 +181,6 @@ module Napakalaki
     #más de 4 tesoros ocultos, y false en caso contrario.
     def valid_state
       v = false
-      puts
-      puts @pending_bad_consequence.to_s
       v = true if (@pending_bad_consequence.is_empty && @hidden_treasures.size <= 4)
       return v
     end

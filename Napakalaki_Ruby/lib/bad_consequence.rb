@@ -32,7 +32,7 @@ module Napakalaki
     #significa que el conjunto de atributos del mal rollo indican que no hay mal rollo que
     #cumplir
     def is_empty
-      empty = false
+      empty = false    
       empty = true if (@specific_hidden_treasures.empty? && @specific_visible_treasures.empty? && @n_hidden_treasures == 0 && @n_visible_treasures == 0)
       return empty
     end
@@ -74,16 +74,19 @@ module Napakalaki
     
     def adjust_to_fit_treasure_lists(v, h)
       t = @text
-      l = @levels, result_n_visible_treasures = 0, result_n_hidden_treasures = 0
-      result_specific_visible_treasures = Array.new, result_specific_hidden_treasures = Array.new
+      l = @levels
+      result_n_visible_treasures = 0
+      result_n_hidden_treasures = 0
+      result_specific_visible_treasures = Array.new
+      result_specific_hidden_treasures = Array.new
 
       if(@n_visible_treasures > 0 || @n_hidden_treasures > 0)
         if (v.size >= @n_visible_treasures) 
-          result_n_visible_treasures = @n_visible_treasures 
+          result_n_visible_treasures = @n_visible_treasures
         else result_n_visible_treasures = v.size
         end
         if (h.size >= @n_hidden_treasures) 
-          result_n_hidden_treasures = @n_hidden_treasures 
+          result_n_hidden_treasures = @n_hidden_treasures
         else result_n_hidden_treasures = h.size
         end
         
@@ -106,6 +109,8 @@ module Napakalaki
             result_specific_hidden_treasures << m_h_treasure
           end
         end
+        
+        
 =begin
         if 
            end

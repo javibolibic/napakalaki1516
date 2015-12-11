@@ -82,12 +82,12 @@ module Napakalaki
 
       # Monstruo 2: Chibithulhu
       prize = Prize.new(1, 1)
-      bad_consequence = BadConsequence.new_level_specific_treasures('Embobados con el lindo primigenio te descargas de tu casco visible.', 0, [TreasureKind::HELMET], nil)
+      bad_consequence = BadConsequence.new_level_specific_treasures('Embobados con el lindo primigenio te descargas de tu casco visible.', 0, [TreasureKind::HELMET], [])
       monsters << Monster.new('Chibithulhu', 2, prize, bad_consequence)
 
       # Monstruo 3: El sopor de Dunwich
       prize = Prize.new(1, 1)
-      bad_consequence = BadConsequence.new_level_specific_treasures('El primordial bostezo contagioso. Pierdes el calzado visible.', 0, [TreasureKind::SHOES], nil)
+      bad_consequence = BadConsequence.new_level_specific_treasures('El primordial bostezo contagioso. Pierdes el calzado visible.', 0, [TreasureKind::SHOES], [])
       monsters << Monster.new('El sopor de Dunwich', 2, prize, bad_consequence)
 
       # Monstruo 4: Ángeles de la noche ibicenca
@@ -97,17 +97,17 @@ module Napakalaki
 
       # Monstruo 5: El gorrón en el umbral
       prize = Prize.new(3, 1)
-      bad_consequence = BadConsequence.new_level_specific_treasures('Pierdes todos tus tesoros visibles.', 0, [TreasureKind::ONEHAND, TreasureKind::ONEHAND, TreasureKind::BOTHHANDS, TreasureKind::ARMOR, TreasureKind::HELMET, TreasureKind::SHOES], nil)
+      bad_consequence = BadConsequence.new_level_specific_treasures('Pierdes todos tus tesoros visibles.', 0, [TreasureKind::ONEHAND, TreasureKind::ONEHAND, TreasureKind::BOTHHANDS, TreasureKind::ARMOR, TreasureKind::HELMET, TreasureKind::SHOES], [])
       monsters << Monster.new('El gorrón en el umbral', 10, prize, bad_consequence)
 
       # Monstruo 6: H.P. Munchcraft
       prize = Prize.new(2, 1)
-      bad_consequence = BadConsequence.new_level_specific_treasures('Pierdes la armadura visible.', 0, [TreasureKind::ARMOR], nil)
+      bad_consequence = BadConsequence.new_level_specific_treasures('Pierdes la armadura visible.', 0, [TreasureKind::ARMOR], [])
       monsters << Monster.new('H.P. Munchcraft', 6, prize, bad_consequence)
 
       # Monstruo 7: Bichgooth
       prize = Prize.new(1, 1)
-      bad_consequence = BadConsequence.new_level_specific_treasures('Sientes bichos bajo la ropa. Descarga la armadura visible.', 0, [TreasureKind::ARMOR], nil)
+      bad_consequence = BadConsequence.new_level_specific_treasures('Sientes bichos bajo la ropa. Descarga la armadura visible.', 0, [TreasureKind::ARMOR], [])
       monsters << Monster.new('Bichgooth', 2, prize, bad_consequence)
 
       # Monstruo 8: El rey de rosa
@@ -132,7 +132,7 @@ module Napakalaki
 
       # Monstruo 12: Dameargo
       prize = Prize.new(2, 1)
-      bad_consequence = BadConsequence.new_level_specific_treasures('Te intentas escaquear. Pierdes una mano visible.', 0, [TreasureKind::ONEHAND], nil)
+      bad_consequence = BadConsequence.new_level_specific_treasures('Te intentas escaquear. Pierdes una mano visible.', 0, [TreasureKind::ONEHAND], [])
       monsters << Monster.new('Dameargo', 1, prize, bad_consequence)
 
       # Monstruo 13: Pollipólipo volante
@@ -152,12 +152,12 @@ module Napakalaki
 
       # Monstruo 16: Roboggoth
       prize = Prize.new(2, 1)
-      bad_consequence = BadConsequence.new_level_specific_treasures('La quinta directiva primaria te obliga a perder 2 niveles y un tesoro 2 manos visible.', 2, [TreasureKind::BOTHHANDS], nil)
+      bad_consequence = BadConsequence.new_level_specific_treasures('La quinta directiva primaria te obliga a perder 2 niveles y un tesoro 2 manos visible.', 2, [TreasureKind::BOTHHANDS], [])
       monsters << Monster.new('Roboggoth', 8, prize, bad_consequence)
 
       # Monstruo 17: El espía
       prize = Prize.new(1, 1)
-      bad_consequence = BadConsequence.new_level_specific_treasures('Te asusta en la noche. Pierdes un casco visible.', 0, [TreasureKind::HELMET], nil)
+      bad_consequence = BadConsequence.new_level_specific_treasures('Te asusta en la noche. Pierdes un casco visible.', 0, [TreasureKind::HELMET], [])
       monsters << Monster.new("El espía", 5, prize, bad_consequence)
 
       # Monstruo 18: El Lenguas
@@ -167,7 +167,7 @@ module Napakalaki
 
       # Monstruo 19: Bicéfalo
       prize = Prize.new(1, 1)
-      bad_consequence = BadConsequence.new_level_specific_treasures('Te faltan manos para tanta cabeza. Pierdes 3 niveles y tus tesoros visibles de las manos.', 3, [TreasureKind::BOTHHANDS], nil)
+      bad_consequence = BadConsequence.new_level_specific_treasures('Te faltan manos para tanta cabeza. Pierdes 3 niveles y tus tesoros visibles de las manos.', 3, [TreasureKind::BOTHHANDS], [])
       monsters << Monster.new('Bicéfalo', 20, prize, bad_consequence)
 
       @unused_monsters = monsters
