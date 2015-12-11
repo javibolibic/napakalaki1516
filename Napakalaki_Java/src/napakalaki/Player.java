@@ -199,11 +199,8 @@ public class Player {
     //más de 4 tesoros ocultos, y false en caso contrario.
     public boolean validState() {
         boolean v = false;
-        System.out.println("pendingBadConsequence: " + this.pendingBadConsequence.isEmpty());
-        System.out.println("hiddenTreasures.size: " + this.hiddenTreasures.size());
         if (this.pendingBadConsequence == null || (this.pendingBadConsequence.isEmpty() && this.hiddenTreasures.size() <= 4))
             v = true;
-        System.out.println("v: " + v);
         return v;
     }
     

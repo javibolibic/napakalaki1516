@@ -191,7 +191,7 @@ module Napakalaki
         @used_treasures.clear
       end
       t = @unused_treasures.at(0)
-      @unused_treasures.delete(t)
+      @unused_treasures.delete_at(0)
 
       return t
     end
@@ -203,7 +203,7 @@ module Napakalaki
         @used_monsters.clear
       end
       m = @unused_monsters.at(0)
-      @unused_monsters.delete(m)
+      @unused_monsters.delete_at(0)
 
       return m
     end

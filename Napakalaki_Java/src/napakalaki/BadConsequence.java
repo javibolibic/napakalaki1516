@@ -115,43 +115,9 @@ public class BadConsequence {
     public BadConsequence adjustToFitTreasureList(ArrayList<Treasure> v, ArrayList<Treasure> h) {
         String t = this.text;
         int l = this.levels, resultNVisibleTreasures = 0, resultNHiddenTreasures = 0;
-        //ArrayList<Treasure> pV = v, pH = h;
-        ArrayList<TreasureKind> resultSpecificVisibleTreasures = new ArrayList(), resultSpecificHiddenTreasures = new ArrayList();
-        //BadConsequence badConsequence;
+        ArrayList<TreasureKind> resultSpecificVisibleTreasures = new ArrayList();
+        ArrayList<TreasureKind> resultSpecificHiddenTreasures = new ArrayList();
         BadConsequence bC;
-        
-        /*if(this.nVisibleTreasures > 0 || this.nHiddenTreasures > 0) {
-            resultNVisibleTreasures = (pV.size() - this.nVisibleTreasures) % pH.size();
-            resultNHiddenTreasures = (pH.size() - this.nHiddenTreasures) % pH.size();
-            badConsequence = new BadConsequence(t, l, resultNVisibleTreasures, resultNHiddenTreasures);
-        }
-        else if(!this.specificVisibleTreasures.isEmpty() || !this.specificHiddenTreasures.isEmpty()) {
-            for(TreasureKind mVTreasure : this.specificVisibleTreasures) {
-                for(Treasure pVTreasure : pV) {
-                    if(mVTreasure == pVTreasure.getType()) {
-                        resultSpecificVisibleTreasures.add(mVTreasure);
-                        pV.remove(pVTreasure);
-                        break;
-                    }
-                }
-            }
-            
-            for(TreasureKind mHTreasure : this.specificHiddenTreasures) {
-                for(Treasure pHTreasure : pH) {
-                    if(mHTreasure == pHTreasure.getType()) {
-                        resultSpecificHiddenTreasures.add(mHTreasure);
-                        pH.remove(pHTreasure);
-                        break;
-                    }
-                }
-            }
-            
-            badConsequence = new BadConsequence(t, l, resultSpecificVisibleTreasures, resultSpecificHiddenTreasures);
-        }
-        
-        else {
-            badConsequence = new BadConsequence(t, l, 0, 0);
-        }*/
         
         if(this.nVisibleTreasures > 0 || this.nHiddenTreasures > 0) {
             if(v.size() >= this.nVisibleTreasures)
