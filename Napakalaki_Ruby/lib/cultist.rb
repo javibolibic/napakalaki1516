@@ -14,10 +14,16 @@
 ********************************************************************
 =end
 
-module TreasureKind
-  ARMOR = :armor
-  ONEHAND = :onehand
-  BOTHHANDS = :bothhands
-  HELMET = :helmet
-  SHOES = :shoes
+class Cultist
+  def initialize(name, gained_levels)
+    @name = name
+    @gained_levels = gained_levels
+  end
+
+  public
+  def get_gained_levels()
+    return @gained_levels
+  end
 end
+
+

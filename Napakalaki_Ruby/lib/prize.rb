@@ -14,17 +14,15 @@
 ********************************************************************
 =end
 
-module Napakalaki
-  class Prize
-    def initialize(t, l)
-      @treasures = t
-      @levels = l
-    end
+class Prize
+  def initialize(t, l)
+    @treasures = t
+    @levels = l
+  end
 
-    attr_reader :treasures, :levels
+  attr_reader :treasures, :levels
 
-    def to_s
-      "Tesoros ganados: #{@treasures} \n Niveles ganados: #{@levels}"
-    end
+  def to_s
+    "Tesoros ganados: #{@treasures} \n Niveles ganados: #{@levels}"
   end
 end

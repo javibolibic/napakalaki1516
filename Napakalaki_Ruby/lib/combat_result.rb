@@ -14,10 +14,9 @@
 ********************************************************************
 =end
 
-module Napakalaki
-  module CombatResult
-    WINGAME = :wingame
-    WIN = :win
-    LOSE = :lose
-  end
+module CombatResult
+  WINGAME = :wingame
+  WIN = :win
+  LOSE = :lose
+  LOSEANDCONVERT = :loseanconvert
 end
