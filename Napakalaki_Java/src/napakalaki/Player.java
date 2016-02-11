@@ -99,8 +99,7 @@ public class Player {
     
     private void applyBadConsequence(Monster m) {
         BadConsequence badConsequence = m.getBadConsequence();
-        int l = badConsequence.getLevels();
-        this.decrementLeveles(l);
+        this.decrementLeveles(badConsequence.getLevels());
         ArrayList<Treasure> v = this.visibleTreasures, h = this.hiddenTreasures;
         BadConsequence pendingBad = badConsequence.adjustToFitTreasureList(v, h);
         this.setPendingBadConsequence(pendingBad);

@@ -19,33 +19,16 @@ public class BadConsequence {
     //Atributos
     static final int MAXTREASURES = 10;
     
-    private String text;
-    private int levels, nVisibleTreasures, nHiddenTreasures;
-    private boolean death;
+    protected String text;
+    protected int levels;
     
-    private ArrayList<TreasureKind> specificHiddenTreasures = new ArrayList();
-    private ArrayList<TreasureKind> specificVisibleTreasures = new ArrayList();
+    //Constructor
+    public BadConsequence(String t, int l) {
+        this.text = t;
+        this.levels = l;
+    }
     
     //Métodos
-    public BadConsequence(String t, int l, int nVisible, int nHidden) {
-        this.text = t;
-        this.levels = l;
-        this.nVisibleTreasures = nVisible;
-        this.nHiddenTreasures = nHidden;
-    }
-    
-    public BadConsequence(String t, boolean death) {
-        this.text = t;
-        this.death = death;
-    }
-    
-    public BadConsequence(String t, int l, ArrayList<TreasureKind> v, ArrayList<TreasureKind> h) {
-        this.text = t;
-        this.levels = l;
-        this.specificVisibleTreasures = v;
-        this.specificHiddenTreasures = h;
-    }
-    
     public String getText() {
         return this.text;
     }
@@ -55,96 +38,41 @@ public class BadConsequence {
     }
     
     public int getNVisibleTreasures() {
-        return this.nVisibleTreasures;
+        return 0;
     }
     
     public int getNHiddenTreasures() {
-        return this.nHiddenTreasures;
+        return 0;
     }
     
     public ArrayList<TreasureKind> getSpecificVisibleTreasures() {
-        return this.specificVisibleTreasures;
+        return null;
     }
     
     public ArrayList<TreasureKind> getSpecificHiddenTreasures() {
-        return this.specificHiddenTreasures;
+        return null;
     }
     
-    public boolean getDeath() {
-        return this.death;
+    public BadConsequence adjustToFitTreasureList(ArrayList<Treasure> v, ArrayList<Treasure> h) {
+        return null;
+    }
+    
+    public void substractVisibleTreasure(Treasure t) {
+    }
+    
+    public void substractHiddenTreasure(Treasure t) {
+    }
+    
+    public boolean isEmpty() {
+        return true;
     }
     
     @Override
     public String toString() {
-        return "Mal rollo: " + this.text + "\nNiveles: " + Integer.toString(this.levels) + "\nMuerte: " + Boolean.toString(this.death);
-    }
-    
-    //Devuelve true cuando el mal rollo que tiene que cumplir el jugador está vacío, eso
-    //significa que el conjunto de atributos del mal rollo indican que no hay mal rollo que
-    //cumplir.
-    public boolean isEmpty() {
-        boolean empty = false;
-        if (this.specificHiddenTreasures.isEmpty() && this.specificVisibleTreasures.isEmpty() && this.nHiddenTreasures == 0 && this.nVisibleTreasures == 0)
-            empty = true;
-        return empty;
-    }
-    
-    public void substractVisibleTreasure(Treasure t) {
-        //¿Es esto lo que hay que hacer?
-        if (t.getType() == null) {
-            if (t.getBonus() != 0)
-                this.nVisibleTreasures--;
-        }
-        else {
-            this.specificVisibleTreasures.remove(t.getType());
-        }
-    }
-    
-    public void substractHiddenTreasure(Treasure t) {
-        //¿Es esto lo que hay que hacer?
-        if (t.getType() == null) {
-            if (t.getBonus() != 0) {
-                this.nHiddenTreasures--;
-            }
-        }
-        else {
-            this.specificHiddenTreasures.remove(t.getType());
-        }
-    }
-    
-    public BadConsequence adjustToFitTreasureList(ArrayList<Treasure> v, ArrayList<Treasure> h) {
-        String t = this.text;
-        int l = this.levels, resultNVisibleTreasures = 0, resultNHiddenTreasures = 0;
-        ArrayList<TreasureKind> resultSpecificVisibleTreasures = new ArrayList();
-        ArrayList<TreasureKind> resultSpecificHiddenTreasures = new ArrayList();
-        BadConsequence bC;
+        String malrollo = "Mal rollo: \n" + "Nombre: " + this.text + "\n";
+        if (this.levels != 0)
+            malrollo += "Niveles perdidos: " + this.levels + "\n";
         
-        if(this.nVisibleTreasures > 0 || this.nHiddenTreasures > 0) {
-            if(v.size() >= this.nVisibleTreasures)
-                resultNVisibleTreasures = this.nVisibleTreasures;
-            else resultNVisibleTreasures = v.size();
-            
-            if(h.size() >= this.nHiddenTreasures)
-                resultNHiddenTreasures = this.nHiddenTreasures;
-            else resultNHiddenTreasures = h.size();
-            
-            bC = new BadConsequence(t, l, resultNVisibleTreasures, resultNHiddenTreasures);
-        }
-        
-        else if(!this.specificVisibleTreasures.isEmpty() || !this.specificHiddenTreasures.isEmpty()) {
-            for(TreasureKind mVTreasure : this.specificVisibleTreasures) {
-                if(v.contains(mVTreasure))
-                    resultSpecificVisibleTreasures.add(mVTreasure);
-            }
-            for(TreasureKind mHTreasure : this.specificHiddenTreasures) {
-                if(h.contains(mHTreasure))
-                    resultSpecificHiddenTreasures.add(mHTreasure);
-            }
-            bC = new BadConsequence(t, l, resultSpecificVisibleTreasures, resultSpecificHiddenTreasures);
-        }
-        else
-            bC = new BadConsequence(t, l, 0, 0);
-        
-        return bC;
+        return malrollo;
     }
 }
