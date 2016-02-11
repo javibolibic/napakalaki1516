@@ -47,6 +47,7 @@ public class NumericBadConsequence extends BadConsequence {
         return empty;
     }
     
+
     @Override
     public void substractVisibleTreasure(Treasure t) {
         if(this.nVisibleTreasures > 0)

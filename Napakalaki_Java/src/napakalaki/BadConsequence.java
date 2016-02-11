@@ -15,7 +15,7 @@ package napakalaki;
 
 import java.util.ArrayList;
 
-public class BadConsequence {
+public abstract class BadConsequence {
     //Atributos
     static final int MAXTREASURES = 10;
     
@@ -53,23 +53,17 @@ public class BadConsequence {
         return null;
     }
     
-    public BadConsequence adjustToFitTreasureList(ArrayList<Treasure> v, ArrayList<Treasure> h) {
-        return null;
-    }
+    public abstract BadConsequence adjustToFitTreasureList(ArrayList<Treasure> v, ArrayList<Treasure> h);
     
-    public void substractVisibleTreasure(Treasure t) {
-    }
+    public abstract void substractVisibleTreasure(Treasure t);
     
-    public void substractHiddenTreasure(Treasure t) {
-    }
+    public abstract void substractHiddenTreasure(Treasure t);
     
-    public boolean isEmpty() {
-        return true;
-    }
+    public abstract boolean isEmpty();
     
     @Override
     public String toString() {
-        String malrollo = "Mal rollo: \n" + "Nombre: " + this.text + "\n";
+        String malrollo = "Mal rollo genérico: \n" + "Nombre: " + this.text + "\n";
         if (this.levels != 0)
             malrollo += "Niveles perdidos: " + this.levels + "\n";
         
