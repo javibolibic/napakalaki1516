@@ -20,7 +20,10 @@ require_relative 'combat_result'
 
 class Player
 
-  @@MAXLEVEL = 10
+  def Player::MAXLEVEL
+    @@MAXLEVEL = 10
+  end
+  
 
   def initialize(name)
     @name = name
@@ -44,7 +47,7 @@ class Player
     @enemy = p.enemy
   end
 
-  attr_reader :name, :level, :dead, :can_i_steal, :hidden_treasures, :visible_treasures
+  attr_reader :name, :level, :dead, :can_i_steal, :hidden_treasures, :visible_treasures, :MAXLEVEL
   attr_accessor :pending_bad_consequence, :enemy
 
   private
@@ -249,7 +252,7 @@ class Player
 
   protected
   def get_oponent_level(m)
-    
+    return m.combat_level
   end
 
   def should_convert

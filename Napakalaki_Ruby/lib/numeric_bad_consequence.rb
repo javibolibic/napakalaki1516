@@ -14,33 +14,44 @@
 ********************************************************************
 =end
 
-class BadConsequence
-  def BadConsequence::MAXTREASURES
-    @@MAXTREASURES = 10
-  end
+require_relative 'bad_consequence'
 
-  def initialize(t, l)
-    @text = t
-    @levels = l
+class NumericBadConsequence < BadConsequence
+
+  def initialize(t, l, n_visible, n_hidden)
+    super(t, l)
+    @n_visible_treasures = n_visible
+    @n_hidden_treasures = n_hidden
   end
   
-  attr_accessor :text, :levels, :n_visible_treasures, :n_hidden_treasures, :specific_visible_treasures, :specific_hidden_treasures, :MAXTREASURES
+  attr_reader :n_visible_treasures, :n_hidden_treasures
 
   #Devuelve true cuando el mal rollo que tiene que cumplir el jugador está vacío, eso
   #significa que el conjunto de atributos del mal rollo indican que no hay mal rollo que
   #cumplir
   def is_empty
-    return true
+    empty = false    
+    empty = true if (@n_hidden_treasures == 0 && @n_visible_treasures == 0)
+    return empty
   end
 
+
+
   def substract_visible_treasure(t)
+    if(@n_visible_treasures > 0)
+      @n_visible_treasures -= 1
+    end
   end
 
   def substract_hidden_treasure(t)
+    if(@n_hidden_treasures > 0)
+      @n_hidden_treasures -= 1
+    end
   end
 
   def adjust_to_fit_treasure_lists(v, h)
-    return nil
+    n_v = [v.size, @n_visible_treasures].min
+    n_h = [h.size, @n_hidden_treasures].min
   end
 
   def to_s
@@ -48,8 +59,13 @@ class BadConsequence
     if(@levels != 0)
       malrollo += "Niveles perdidos: " + @levels.to_s + "\n"
     end
+    if(@n_visible_treasures != 0)
+      malrollo += "Tesoros visibles perdidos: " + @n_visible_treasures.to_s + "\n";
+    end
+    if(@n_hidden_treasures != 0)
+      malrollo += "Tesoros ocultos perdidos: " + @n_visible_treasures.to_s + "\n";
+    end
     
     return malrollo
   end
 end
-

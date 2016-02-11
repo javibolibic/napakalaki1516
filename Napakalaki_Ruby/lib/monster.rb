@@ -14,6 +14,8 @@
 ********************************************************************
 =end
 
+
+
 class Monster
   def initialize(n, l, p, b)
     @name = n
@@ -23,11 +25,8 @@ class Monster
     @level_change_against_cultist_player = 0;
   end
   
-  def new_monster_lc(n, l, p, bad_consequence, l_c)
-    @name = n
-    @combat_level = l
-    @bad_consequence = bad_consequence
-    @prize = p
+  def self.new_monster_lc(n, l, p, bad_consequence, l_c)
+    self.new(n, l, p, bad_consequence)
     @level_change_against_cultist_player = l_c
   end
 
