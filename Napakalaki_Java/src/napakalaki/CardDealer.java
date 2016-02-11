@@ -27,6 +27,8 @@ public class CardDealer {
     private ArrayList<Treasure> usedTreasures = new ArrayList();
     private ArrayList<Treasure> unusedTreasures = new ArrayList();
     
+    private ArrayList<Cultist> unusedCultists = new ArrayList();
+    
     //Métodos
     private CardDealer(){
     }
@@ -200,6 +202,42 @@ public class CardDealer {
         badConsequence = new BadConsequence("Te faltan manos para tanta cabeza. Pierdes 3 niveles y tus tesoros visibles de las manos.", 3, new ArrayList(Arrays.asList(TreasureKind.ONEHAND, TreasureKind.ONEHAND, TreasureKind.BOTHHANDS)), new ArrayList());
         prize = new Prize(1, 1);
         monstruos.add(new Monster("Bicéfalo", 20, badConsequence, prize));
+        
+        //Monstruo con sectarios 1: El mal indecible impronunciable
+        badConsequence = new BadConsequence("Pierdes 1 mano visible", 0, new ArrayList(Arrays.asList(TreasureKind.ONEHAND)), new ArrayList());
+        prize = new Prize(3, 1);
+        monstruos.add(new Monster("El mal indecible impronunciable", 10, badConsequence, prize, -2));
+        
+        //Monstruo con sectarios 2: Testigos oculares
+        badConsequence = new BadConsequence("Pierdes tus tesoros visibles. Ja ja ja.", 0, new ArrayList(Arrays.asList(TreasureKind.ONEHAND, TreasureKind.ONEHAND, TreasureKind.BOTHHANDS, TreasureKind.HELMET, TreasureKind.ARMOR, TreasureKind.SHOES)), new ArrayList());
+        prize = new Prize(2, 1);
+        monstruos.add(new Monster("Testigos oculares", 6, badConsequence, prize, 2));
+        
+        //Monstruo con sectarios 3: El gran cthulhu
+        badConsequence = new BadConsequence("Hoy no es tu día de suerte. Mueres.", true);
+        prize = new Prize(2, 5);
+        monstruos.add(new Monster("El gran cthulhu", 20, badConsequence, prize, 4));
+        
+        //Monstruo con sectarios 4: Serpiente político
+        badConsequence = new BadConsequence("Tu gobierno te recorta 2 niveles.", 2, 0, 0);
+        prize = new Prize(2, 1);
+        monstruos.add(new Monster("Serpiente político", 8, badConsequence, prize, -2));
+        
+        //Monstruo con sectarios 5: Felpuggoth
+        badConsequence = new BadConsequence("Pierdes tu casco y tu armadura visible. Pierdes tus manos ocultas.", 0, new ArrayList(Arrays.asList(TreasureKind.ARMOR, TreasureKind.HELMET)), new ArrayList(Arrays.asList(TreasureKind.ONEHAND, TreasureKind.ONEHAND, TreasureKind.BOTHHANDS)));
+        prize = new Prize(1, 1);
+        monstruos.add(new Monster("Felpuggoth", 2, badConsequence, prize, 5));
+        
+        //Monstruo con sectarios 6: Shoggoth
+        badConsequence = new BadConsequence("Pierdes 2 niveles.", 2, 0, 0);
+        prize = new Prize(4, 2);
+        monstruos.add(new Monster("Shoggoth", 16, badConsequence, prize, -4));
+        
+        //Monstruo con sectarios 7: Lolitagooth
+        badConsequence = new BadConsequence("Pintalabios negro. Pierdes 2 niveles.", 2, 0, 0);
+        prize = new Prize(1, 1);
+        monstruos.add(new Monster("Lolitagooth", 2, badConsequence, prize, 3));
+        
         this.unusedMonsters = monstruos;
     }
     
@@ -257,5 +295,31 @@ public class CardDealer {
     public void initCards() {
         this.initTreasureCardDeck();
         this.initMonsterCardDeck();
+        this.initCultistCardDeck();
+    }
+    
+    private void shuffleCultists() {
+        Collections.shuffle(this.unusedCultists);
+    }
+    
+    private void initCultistCardDeck() {
+        this.unusedCultists.add(new Cultist("Sectario 1", 1));
+        this.unusedCultists.add(new Cultist("Sectario 2", 2));
+        this.unusedCultists.add(new Cultist("Sectario 3", 1));
+        this.unusedCultists.add(new Cultist("Sectario 4", 2));
+        this.unusedCultists.add(new Cultist("Sectario 5", 1));
+        this.unusedCultists.add(new Cultist("Sectario 6", 1));
+    }
+    
+    public Cultist nextCultist() {
+        //Si tenemos el mazo vacío lo inicializamos
+        if (this.unusedCultists.isEmpty()) {
+            this.initCultistCardDeck();
+            this.shuffleCultists();
+        }
+        
+        Cultist c = this.unusedCultists.get(0);
+        this.unusedCultists.remove(c); //Borramos la carta escogida del mazo
+        return c;
     }
 }

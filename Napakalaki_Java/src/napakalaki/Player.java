@@ -24,15 +24,27 @@ public class Player {
     private boolean dead = true;
     private boolean canISteal = true;
     
-    private Player enemy;
-    private ArrayList<Treasure> hiddenTreasures = new ArrayList();
-    private ArrayList<Treasure> visibleTreasures = new ArrayList();
+    protected Player enemy;
+    ArrayList<Treasure> hiddenTreasures = new ArrayList();
+    ArrayList<Treasure> visibleTreasures = new ArrayList();
     private BadConsequence pendingBadConsequence;
+    
     
     //Métodos
     public Player(String name) {
         this.name = name;
         this.level = 1;
+    }
+    
+    public Player(Player p) {
+        this.canISteal = p.canISteal;
+        this.dead = p.dead;
+        this.enemy = p.enemy;
+        this.hiddenTreasures = p.hiddenTreasures;
+        this.level = p.level;
+        this.name = p.name;
+        this.pendingBadConsequence = p.pendingBadConsequence;
+        this.visibleTreasures = p.visibleTreasures;
     }
     
     //Devuelve el nombre del jugador.
@@ -47,7 +59,7 @@ public class Player {
     
     //Devuelve el nivel de combate del jugador, que viene dado por su nivel más los bonus
     //que le proporcionan los tesoros que tenga equipados, según las reglas del juego
-    private int getCombatLevel() {
+    protected int getCombatLevel() {
         int combatlevel = this.level;
         for (Treasure t : visibleTreasures)
             combatlevel += t.getBonus();
@@ -152,7 +164,7 @@ public class Player {
     
     public CombatResult combat(Monster m) {
         int myLevel = this.getCombatLevel();
-        int monsterLevel = m.getCombatLevel();
+        int monsterLevel = this.getOponentLevel(m);
         CombatResult combatResult;
         if(myLevel > monsterLevel) {
             this.applyPrize(m);
@@ -166,6 +178,9 @@ public class Player {
             this.applyBadConsequence(m);
             
             combatResult = CombatResult.LOSE;
+            
+            if(this.shouldConvert() == true)
+                combatResult = CombatResult.LOSEANDCONVERT;
         }
         
         return combatResult;
@@ -261,9 +276,9 @@ public class Player {
     //Devuelve true si el jugador tiene tesoros para ser robados por otro jugador y false
     //en caso contrario.
     private boolean canYouGiveMeATreasure() {
-        boolean youcan = false;
-        if (!this.hiddenTreasures.isEmpty())
-            youcan = true;
+        boolean youcan = true;
+        if (this.hiddenTreasures.isEmpty())
+            youcan = false;
         return youcan;
     }
     
@@ -284,5 +299,24 @@ public class Player {
     @Override
     public String toString() {
         return this.name;
+    }
+    
+    protected int getOponentLevel(Monster m) {
+        return m.getCombatLevel();
+    }
+    
+    protected boolean shouldConvert() {
+        Dice dado = Dice.getInstance();
+        
+        boolean ret = false;
+        if(dado.nextNumber() == 1)
+            ret = true;
+        
+        return ret;
+    }
+    
+    //Consultor para enemy
+    protected Player getEnemy() {
+        return enemy;
     }
 }

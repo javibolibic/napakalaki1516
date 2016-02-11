@@ -21,15 +21,26 @@ public class Monster {
     private BadConsequence badConsequence;
     private Prize prize;
     
-    //Métodos
+    private int levelChangeAgainstCultistPlayer;
+    
+    //Constructores
     public Monster(String n, int l, BadConsequence b, Prize p) {
         this.name = n;
         this.combatLevel = l;
         this.badConsequence = b;
         this.prize = p;
+        this.levelChangeAgainstCultistPlayer = 0;
     }
     
+    public Monster(String n, int l, BadConsequence badConsequence, Prize p, int lC) {
+        this.name = n;
+        this.combatLevel = l;
+        this.badConsequence = badConsequence;
+        this.prize = p;
+        this.levelChangeAgainstCultistPlayer = lC;
+    }
     
+    //Métodos
     public String getName () {
         return this.name;
     }
@@ -51,6 +62,12 @@ public class Monster {
     public int getTreasuresGained() {
         return this.prize.getTreasures();
     }
+
+    public int getCombatLevelAgainstCultistPlayer() {
+        return this.getCombatLevel() + this.levelChangeAgainstCultistPlayer;
+    }
+    
+    
     
     @Override
     public String toString() {

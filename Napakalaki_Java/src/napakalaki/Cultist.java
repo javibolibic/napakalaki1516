@@ -8,14 +8,22 @@
 **                  |_|                                           **
 ** Creado por Javier Bolívar Valverde <javibolivar@correo.ugr.es> **
 ** Programación y Diseño Orientado a Objetos                      **
-** Grado en Ingeniería Informática (Universidad de Granada)       ***
+** Grado en Ingeniería Informática (Universidad de Granada)       **
 ********************************************************************
 */
+
 package napakalaki;
 
-public enum CombatResult {
-    WINGAME,
-    WIN,
-    LOSE,
-    LOSEANDCONVERT,
+public class Cultist {
+    private String name;
+    private int gainedLevels;
+
+    public Cultist(String name, int gainedLevels) {
+        this.name = name;
+        this.gainedLevels = gainedLevels;
+    }
+
+    public int getGainedLevels() {
+        return gainedLevels;
+    }
 }
