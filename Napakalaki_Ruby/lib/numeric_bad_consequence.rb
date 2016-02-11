@@ -24,6 +24,8 @@ class NumericBadConsequence < BadConsequence
     @n_hidden_treasures = n_hidden
   end
   
+  public_class_methos :new
+  
   attr_reader :n_visible_treasures, :n_hidden_treasures
 
   #Devuelve true cuando el mal rollo que tiene que cumplir el jugador está vacío, eso

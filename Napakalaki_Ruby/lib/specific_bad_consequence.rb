@@ -24,6 +24,8 @@ class SpecificBadConsequence < BadConsequence
     @specific_hidden_treasures = h
   end
   
+  public_class_method :new
+  
   attr_reader :specific_visible_treasures, :specific_hidden_treasures
 
   #Devuelve true cuando el mal rollo que tiene que cumplir el jugador está vacío, eso

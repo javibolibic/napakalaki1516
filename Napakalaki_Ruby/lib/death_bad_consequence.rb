@@ -19,9 +19,11 @@ require_relative 'numeric_bad_consequence'
 class DeathBadConsequence < NumericBadConsequence
 
   def initialize(t, death)
-    super(t, Player.MAXLEVEL, BadConsequence.MAXTREASURES, BadConsequence.MAXTREASURES)
+    super(t, Player.maxlevel, BadConsequence.maxtreasures, BadConsequence.maxtreasures)
     @death = death
   end
+  
+  public_class_method :new
 
   #Devuelve true cuando el mal rollo que tiene que cumplir el jugador está vacío, eso
   #significa que el conjunto de atributos del mal rollo indican que no hay mal rollo que

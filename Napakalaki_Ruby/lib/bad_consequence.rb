@@ -15,7 +15,7 @@
 =end
 
 class BadConsequence
-  def BadConsequence::MAXTREASURES
+  def BadConsequence::maxtreasures
     @@MAXTREASURES = 10
   end
 
@@ -24,23 +24,27 @@ class BadConsequence
     @levels = l
   end
   
+  private_class_method :new #Clase abstracta
+  
   attr_accessor :text, :levels, :n_visible_treasures, :n_hidden_treasures, :specific_visible_treasures, :specific_hidden_treasures, :MAXTREASURES
 
   #Devuelve true cuando el mal rollo que tiene que cumplir el jugador está vacío, eso
   #significa que el conjunto de atributos del mal rollo indican que no hay mal rollo que
   #cumplir
   def is_empty
-    return true
+    raise NotImplementError.new
   end
 
   def substract_visible_treasure(t)
+    raise NotImplementError.new
   end
 
   def substract_hidden_treasure(t)
+    raise NotImplementError.new
   end
 
   def adjust_to_fit_treasure_lists(v, h)
-    return nil
+    raise NotImplementError.new
   end
 
   def to_s

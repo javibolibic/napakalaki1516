@@ -20,7 +20,7 @@ require_relative 'combat_result'
 
 class Player
 
-  def Player::MAXLEVEL
+  def Player::maxlevel
     @@MAXLEVEL = 10
   end
   
